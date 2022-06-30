@@ -1,5 +1,8 @@
 # OnlineCinema
 Just another pet project
+## Архитектура
+![](.github/Architecture.PNG)
 
-Прогресс -
+## Прогресс
+
 https://trello.com/b/jsRJQlN4/онлайн-кинотеатр
