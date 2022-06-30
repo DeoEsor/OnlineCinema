@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using CryptoDesktop.MVVM.Commands;
+using CinemaDesktop.MVVM.Commands;
 using Microsoft.Win32;
 
 namespace CinemaDesktop.MVVM.Model;

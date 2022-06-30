@@ -21,7 +21,7 @@
 
 
     <ItemGroup>
-      <ProjectReference Include="..\Cinema.Desktop.gRPC.Client\Cinema.Desktop.gRPC.Client.csproj" />
+      <ProjectReference Include="..\CinemaDesktop.gRPC.Client\CinemaDesktop.gRPC.Client.csproj" />
     </ItemGroup>
 
 

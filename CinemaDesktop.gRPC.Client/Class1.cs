@@ -1,6 +1,6 @@
 using System;
 
-namespace Cinema.Desktop.gRPC.Client
+namespace CinemaDesktop.gRPC.Client
 {
     public class Class1
     {
