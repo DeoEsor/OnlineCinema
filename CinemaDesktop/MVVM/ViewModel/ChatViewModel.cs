@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using CinemaDesktop.MVVM.Commands;
 using CinemaDesktop.MVVM.Model;
-using CryptoDesktop.MVVM.Commands;
 using Microsoft.Win32;
 
 namespace CinemaDesktop.MVVM.ViewModel;
