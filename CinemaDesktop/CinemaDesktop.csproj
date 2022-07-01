@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <Authors>DeoEsor, vecherochek, sornick01, LinearBasis</Authors>
+        <Description>WPF films media player and lib</Description>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="DryIoc" Version="5.1.0" />
+        <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+        <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cinema.Desktop.gRPC.Client\Cinema.Desktop.gRPC.Client.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Content Include="Resources\Icons\abstract-colorful_651523.jpg" />
+      <Content Include="Resources\Icons\btn_close_p.png" />
+      <Content Include="Resources\Icons\btn_min_p.png" />
+      <Content Include="Resources\Icons\btn_mute_P.png" />
+      <Content Include="Resources\Icons\btn_next_P.png" />
+      <Content Include="Resources\Icons\btn_pause_P.png" />
+      <Content Include="Resources\Icons\btn_play_P.png" />
+      <Content Include="Resources\Icons\btn_previous_P.png" />
+      <Content Include="Resources\Icons\Btn_RepeatC_p.png" />
+      <Content Include="Resources\Icons\btn_Repeat_p.png" />
+      <Content Include="Resources\Icons\btn_stop_P.png" />
+      <Content Include="Resources\Icons\btn_volume_P.png" />
+      <Content Include="Resources\Icons\dimensions(2).png" />
+      <Content Include="Resources\Icons\facebook.png" />
+      <Content Include="Resources\Icons\icono2.png" />
+    </ItemGroup>
+
+</Project>

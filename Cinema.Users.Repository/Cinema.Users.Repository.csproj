@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.21.1" />
+        <PackageReference Include="Grpc.AspNetCore.Server" Version="2.46.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.46.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+    </ItemGroup>
+    
+    
+    <ItemGroup>
+        <Protobuf Include="../Protos/UsersServices/**/*.proto" GrpcService="Server" ProtoRoot="../Protos/UsersServices" />
+        <Protobuf Update="..\Protos\UsersServices\UsersServiceMessages\RegisterMessages.proto">
+            <Link>UsersServices\UsersServiceMessages\RegisterMessages.proto</Link>
+        </Protobuf>
+        <Protobuf Update="..\Protos\UsersServices\UsersServiceMessages\AuthMessages.proto">
+            <Link>UsersServices\UsersServiceMessages\AuthMessages.proto</Link>
+        </Protobuf>
+    </ItemGroup>
+    
+    
+    <ItemGroup>
+      <ProjectReference Include="..\OnlineCinema.Domain\OnlineCinema.Domain.csproj" />
+    </ItemGroup>
+</Project>

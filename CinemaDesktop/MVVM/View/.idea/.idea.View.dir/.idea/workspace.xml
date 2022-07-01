@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="97649acc-3d42-4396-be81-03fd96f532cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../.idea/.idea.Cryptography/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../.idea/.idea.Cryptography/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CryptographyLib/Data/Fraction.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CryptographyLib/Data/RSAPrivateKey.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CryptographyLib/Data/RSAPublicKey.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/.idea.Cryptography/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/.idea.Cryptography/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CryptoTest/SPNetwork/PBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CryptoTest/SPNetwork/PBlock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/FeistelNetwork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/FeistelNetwork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/PBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/PBlock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/SBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/FeistelNetwork/SBlock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/SymmetricEncryptorContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CryptographyLib/Symmetric/SymmetricEncryptorContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Protos/Messages/OpenMessage.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Protos/Messages/OpenMessage.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Protos/Messages/SessionMessages.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Protos/Messages/SessionMessages.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../СryptoClient/СryptoClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../СryptoClient/СryptoClient.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2A2z9roo0rIzNvNwhDyYAg3crEM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97649acc-3d42-4396-be81-03fd96f532cd" name="Changes" comment="" />
+      <created>1654222368743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654222368743</updated>
+      <workItem from="1654222409758" duration="361000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
