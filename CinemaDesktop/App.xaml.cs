@@ -18,10 +18,9 @@ namespace CinemaDesktop
             // Grpc client
             //Views
             Container.Register<Registration>(Reuse.Transient);
-            Container.Register<MainWindow>(Reuse.Transient);
             //ViewModels
 			
-            var reg = Container.Resolve<MainWindow>();
+            var reg = Container.Resolve<Registration>();
             reg.Show();
         }
     }
