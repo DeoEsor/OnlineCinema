@@ -18,7 +18,10 @@ public class UsersService : UserService.UserService.UserServiceBase
     }
     public override async Task<UserReply> Auth(AuthRequest request, ServerCallContext context)
     {
-        var reply = new UserReply(statusCode: (int)StatusCode.OK);
+        var reply = new UserReply
+        {
+            StatusCode = (int)StatusCode.OK
+        };
         var user = _db.Data.FirstOrDefault(s => s.Username == request.Username);
         
         if (user == null)
