@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+import "UsersServiceMessages/User.proto";
+import "UsersServiceMessages/RegisterMessages.proto";
+import "UsersServiceMessages/AuthMessages.proto";
+import "google/protobuf/empty.proto";
+
+package UserService;
+option csharp_namespace = "UserService";
+
+
+service UserService {
+  rpc Auth (AuthRequest) returns (UserReply);
+  rpc Register (RegisterRequest) returns (UserReply);
+}
