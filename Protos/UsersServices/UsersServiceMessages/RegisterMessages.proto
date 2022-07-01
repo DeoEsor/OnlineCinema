@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+import "UsersServiceMessages/User.proto";
+
+option csharp_namespace = "UserService.Messages";
+
+package UserService;
+
+message RegisterRequest{
+  string Username = 1;
+  bytes Password = 2;
+  optional string status = 3;
+}
