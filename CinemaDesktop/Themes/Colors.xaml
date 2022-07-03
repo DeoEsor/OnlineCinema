@@ -29,4 +29,8 @@
 
     <Color x:Key="WordGreen">#00c541</Color>
     <SolidColorBrush x:Key="WordGreenBrush" Color="{StaticResource WordGreen}" />
+    
+    <Color x:Key="GraphiteBlack">#1C1C1C</Color>
+    <SolidColorBrush x:Key="GraphiteBlackBrush" Color="{StaticResource GraphiteBlack}" />
+
 </ResourceDictionary>

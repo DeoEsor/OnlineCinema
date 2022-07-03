@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="ContentCard">
+        
+        <Setter Property="Background" Value="#28292A"/>
+        <Setter Property="Template">
+            
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}"
+                            Height="300"
+                            Width="150"
+                            Margin="10"
+                            CornerRadius="4">
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,0,0,5">
+                            <Image Source="{Binding ImageSource}"
+                                   Margin="4"/> 
+                            <WrapPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ContentName}"
+                                           Foreground="White"
+                                           FontSize="12"
+                                           TextWrapping="Wrap"
+                                           Margin="5"/>
+                                <TextBlock Text="{Binding ContentGenre}"
+                                           Foreground="Gray"
+                                           TextWrapping="Wrap"
+                                           Margin="5,0"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#1C1C1C"></Setter>
+            </Trigger>
+        </Style.Triggers>
+        
+    </Style>
+</ResourceDictionary>
