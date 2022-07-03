@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CinemaDesktop.MVVM.ViewModel;
 using DryIoc;
 
 namespace CinemaDesktop
@@ -17,10 +18,13 @@ namespace CinemaDesktop
 			
             // Grpc client
             //Views
-            Container.Register<Registration>(Reuse.Transient);
+            Container.Register<MainWindow>(Reuse.Singleton);
+            Container.Register<MainViewModel>(Reuse.Singleton);
+
             //ViewModels
 			
-            var reg = Container.Resolve<Registration>();
+            var reg = Container.Resolve<MainWindow>();
+            reg.DataContext = Container.Resolve<MainViewModel>();
             reg.Show();
         }
     }
