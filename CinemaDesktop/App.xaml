@@ -18,9 +18,10 @@
                 <ResourceDictionary Source="Themes/SearchTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Themes/ButtonTheme.xaml"/>
                 <ResourceDictionary Source="Themes/SearchButtonTheme.xaml"/>
-                <ResourceDictionary Source="Themes/ContentCard.xaml"/>
                 <ResourceDictionary Source="Themes/ScrollTheme.xaml"/>
                 <ResourceDictionary Source="Themes/Colors.xaml"/>
+                <ResourceDictionary Source="Themes/PlayButtonTheme.xaml"/>
+
 
             </ResourceDictionary.MergedDictionaries>
             
@@ -30,6 +31,10 @@
             
             <DataTemplate DataType="{x:Type viewModel:UserViewModel}">
                 <view:UserView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:ContentCardViewModel}">
+                <view:ContentCardView/>
             </DataTemplate>
             
         </ResourceDictionary>
