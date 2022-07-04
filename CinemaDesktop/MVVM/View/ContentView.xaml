@@ -8,11 +8,13 @@
              d:DesignHeight="520" 
              d:DesignWidth="750"
              Background="#2D2F30">
+    <UserControl.DataContext>
+        <viewModel:ContentViewModel/>
+    </UserControl.DataContext>
     
     <ListView ItemsSource="{Binding Content}"
               Background="Transparent"
               BorderThickness="0"
-              ItemContainerStyle="{StaticResource ContentCard}" 
               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
               ScrollViewer.VerticalScrollBarVisibility="Auto">
         
