@@ -18,4 +18,14 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <Protobuf Include="../Protos/UsersServices/**/*.proto" GrpcService="Client" ProtoRoot="../Protos/UsersServices" />
+        <Protobuf Update="..\Protos\UsersServices\UsersServiceMessages\RegisterMessages.proto">
+            <Link>UsersServices\UsersServiceMessages\RegisterMessages.proto</Link>
+        </Protobuf>
+        <Protobuf Update="..\Protos\UsersServices\UsersServiceMessages\AuthMessages.proto">
+            <Link>UsersServices\UsersServiceMessages\AuthMessages.proto</Link>
+        </Protobuf>
+    </ItemGroup>
+
 </Project>
