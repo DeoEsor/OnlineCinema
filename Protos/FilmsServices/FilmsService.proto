@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+
+import "FilmMessages/TittleData.proto";
+import "google/protobuf/empty.proto";
+
+package FilmsService;
+option csharp_namespace = "FilmsService";
+
+
+service FilmsService {
+  rpc GetTittleData (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddTittleData (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateTittleData (FilmPutRequest) returns (FilmPutResponse);
+}
+
+message FilmGetRequest
+{
+    string id = 1;
+}
+
+message FilmGetResponse
+{
+  int32 Status = 1;
+  optional TitleData FilmData =  2;
+}
+
+message FilmPostRequest
+{
+    TitleData FilmData =  1;
+}
+
+message FilmPostResponse
+{
+  int32 Status = 1;
+  optional TitleData FilmData =  2;
+}
+
+
+message FilmPutRequest
+{
+  TitleData FilmData =  1;
+}
+
+message FilmPutResponse
+{
+  int32 Status = 1;
+  optional TitleData FilmData =  2;
+}
