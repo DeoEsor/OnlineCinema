@@ -1,0 +1,224 @@
+﻿syntax = "proto3";
+
+package FilmsService;
+option csharp_namespace = "FilmsService";
+
+message TitleData
+{
+    string Id = 1;
+    string Title = 2;
+    string OriginalTitle = 3;
+    string FullTitle = 4;
+    string Year = 5;
+    string ReleaseDate = 6;
+    string RuntimeMins = 7;
+    string RuntimeStr = 8;
+    string Plot = 9; 
+    string PlotLocal = 10;
+    bool PlotLocalIsRtl = 11;
+    string Awards = 12;
+    string Image = 13;
+    string Type = 14;
+    string Directors = 15;
+    repeated StarShort DirectorList = 16;
+    string Writers = 17;
+    repeated StarShort WriterList = 18;
+    string Stars = 19;
+    repeated StarShort StarList = 20;
+    repeated ActorShort ActorList = 21;
+    FullCastData FullCast = 22;
+    string Genres = 23;
+    repeated string GenreList = 24;
+    string Companies = 25;
+    repeated CompanyShort CompanyList = 26;
+    string Countries = 27;
+    repeated string CountryList = 28;
+    string Languages = 29;
+    repeated string LanguageList = 30;
+    string ContentRating = 31;
+    string IMDbRating = 32;
+    string IMDbRatingVotes = 33;
+    string MetacriticRating = 34;
+    RatingData Ratings = 35;
+    WikipediaData Wikipedia = 36;
+    PosterData Posters = 37;
+    ImageData Images = 38;
+    BoxOfficeShort BoxOffice = 39;
+    string Tagline = 40;
+    string Keywords = 41;
+    repeated string KeywordList = 42;
+    repeated SimilarShort Similars = 43;
+    TvSeriesInfo TvSeriesInfo = 44;
+    TvEpisodeInfo TvEpisodeInfo = 45;
+    string ErrorMessage = 46;
+    string MagnetLink = 47;
+}
+
+message PosterDataItem
+{
+    string Id = 1;
+    string Link = 2;
+    double AspectRatio = 3;
+    string Language = 4;
+    int32 Width = 5;
+    int32 Height = 6;
+}
+
+message TvSeriesInfo
+{
+    string YearEnd = 1;
+    string Creators = 2;
+    repeated StarShort CreatorList = 3;
+    repeated string Seasons = 4;
+}
+
+message TvEpisodeInfo
+{
+    string SeriesId = 1;
+    string SeriesTitle = 2;
+    string SeriesFullTitle = 3;
+    string SeriesYear = 4;
+    string SeriesYearEnd = 5;
+
+    string SeasonNumber = 6;
+    string EpisodeNumber = 7;
+
+    string PreviousEpisodeId = 8;
+    string NextEpisodeId = 9;
+}
+
+message SimilarShort
+{
+    string Id = 1;
+    string Title = 2;
+    string Image = 3;
+    string IMDbRating = 4;
+}
+
+message StarShort
+{
+    string Id = 1;
+    string Name = 2;
+}
+
+message BoxOfficeShort
+{
+    string Budget = 1;
+    string OpeningWeekendUSA = 2;
+    string GrossUSA = 3;
+    string CumulativeWorldwideGross = 4;
+}
+
+message CompanyShort
+{
+    string Id = 1;
+    string Name = 2;
+}
+
+message ActorShort
+{
+  string Id = 1;
+  string Image = 2;
+  string Name = 3;
+  string AsCharacter = 4;
+}
+
+message FullCastData
+{
+  string IMDbId = 1;
+  string Title = 2;
+  string FullTitle = 3;
+  string Type = 4;
+  string Year = 5;
+  CastShort Directors = 6;
+  CastShort Writers = 7;
+  repeated ActorShort Actors = 8;
+  repeated CastShort Others = 9;
+  string ErrorMessage = 10;
+}
+
+message CastShort
+{
+  string Job = 1;
+  repeated CastShortItem Items = 2;
+}
+
+message CastShortItem
+{
+  string Id = 1;
+  string Name = 2;
+  string Description = 3;
+}
+
+message RatingData
+{
+  string IMDbId = 1;
+  string Title = 2;
+  string FullTitle = 3;
+  string Type = 4;
+  string Year = 5;
+
+  string IMDb = 6;
+  string Metacritic = 7;
+  string TheMovieDb = 8;
+  string RottenTomatoes = 9;
+  string FilmAffinity = 10;
+
+  string ErrorMessage = 11;
+}
+
+message WikipediaData
+{
+  string IMDbId = 1;
+  string Title = 2;
+  string FullTitle = 3;
+  string Type = 4;
+  string Year = 5;
+
+  string Language = 6;
+  string TitleInLanguage = 7;
+  string Url = 8;
+
+  WikipediaDataPlot PlotShort = 9;
+  WikipediaDataPlot PlotFull = 10;
+
+  string ErrorMessage = 11;
+}
+
+message WikipediaDataPlot
+{
+  string PlainText = 1;
+  string Html = 2;
+}
+
+message PosterData
+{
+  string IMDbId = 1;
+  string Title = 2;
+  string FullTitle = 3;
+  string Type  = 4;
+  string Year = 5;
+  repeated PosterDataItem Posters = 6;
+  repeated PosterDataItem Backdors = 7;
+
+  string ErrorMessage = 8;
+}
+
+message ImageData
+{
+   string IMDbId = 1;
+   string Title = 2;
+   string FullTitle = 3;
+   string Type = 4;
+   string Year = 5;
+
+   repeated ImageDataDetail Items = 6;
+
+   string ErrorMessage = 7;
+}
+
+message ImageDataDetail
+{
+   string Title = 1;
+   string Image = 2;
+}
