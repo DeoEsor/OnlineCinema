@@ -23,7 +23,7 @@
     <Grid >
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -44,10 +44,12 @@
                 <Label Content="813Cinema"
                        Foreground="Gray"
                        FontWeight="ExtraBold"
-                       FontSize="16"/>
+                       FontSize="20"
+                       Margin="5, 0, 0, 0"/>
                 
                 <StackPanel HorizontalAlignment="Right"
-                            Orientation="Horizontal">
+                            Orientation="Horizontal"
+                            Margin="5, 0">
                     
                     <Button Width="20" Height="20"
                             Content="_"
@@ -151,14 +153,14 @@
                 
                 <RadioButton Content="Films"
                              Height="50"
-                             FontSize="14"
+                             FontSize="18"
                              Style="{StaticResource MenuButtonStyle}"
                              IsChecked="True"
                              Command="{Binding ContentViewCommand}"/>
                 
                 <RadioButton Content="Serials"
                              Height="50"
-                             FontSize="14"
+                             FontSize="18"
                              Style="{StaticResource MenuButtonStyle}"/>
                 
                 <RadioButton Content="About the authors"
