@@ -30,6 +30,7 @@ public partial class ContentCardControl : UserControl
         {
             var mainViewModel = App.Container.Resolve<MainViewModel>();
             mainViewModel.CurrentView = new ContentCardViewModel(model);
+            mainViewModel.VM.Push(mainViewModel.CurrentView);
         });
         
         InitializeComponent();

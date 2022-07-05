@@ -1,5 +1,8 @@
-﻿using CinemaDesktop.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CinemaDesktop.Core;
 using CinemaDesktop.MVVM.Commands;
+using DryIoc;
 
 namespace CinemaDesktop.MVVM.ViewModel;
 
@@ -7,11 +10,15 @@ public class MainViewModel: ObservableObject
 {
     public RelayCommand ContentViewCommand { get; set; }
     
+    public RelayCommand BackViewCommand { get; set; }
+    
     public RelayCommand UserViewCommand { get; set; }
 
     public ContentViewModel ContentVM;
     
-    public UserViewModel UserVM;
+    public Stack<object> VM = new Stack<object>();
+    
+    public UserViewModel UserVM{ get; set; }
 
     private object _currentView;
 
@@ -28,18 +35,31 @@ public class MainViewModel: ObservableObject
     public MainViewModel()
     {
         ContentVM = new ContentViewModel();
-        UserVM = new UserViewModel();
+        
+        UserVM = App.Container.Resolve<UserViewModel>();
         
         CurrentView = ContentVM;
+        VM.Push(CurrentView);
 
         ContentViewCommand = new RelayCommand(o =>
         {
             CurrentView = ContentVM;
+            VM.Push(CurrentView);
         });
         
         UserViewCommand = new RelayCommand(o =>
         {
             CurrentView = UserVM;
+            VM.Push(CurrentView);
+        });
+
+        BackViewCommand = new RelayCommand(o =>
+        {
+            if (VM.Count > 1)
+            {
+                VM.Pop();
+                CurrentView = VM.Peek();
+            }
         });
     }
 }

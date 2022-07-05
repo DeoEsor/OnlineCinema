@@ -29,7 +29,13 @@
       <Content Include="Resources\Icons\abstract-colorful_651523.jpg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Content Include="Resources\Icons\Amid.png">
+      <Content Include="Resources\Icons\BackGray.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Resources\Icons\BackWhite.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Resources\Icons\BackYellow.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Resources\Icons\btn_close_p.png">
@@ -72,6 +78,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Resources\Icons\icono2.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Resources\Icons\pablo-movie-night.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Resources\Icons\PlayButtonWhite.png">
