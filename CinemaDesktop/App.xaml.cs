@@ -20,6 +20,7 @@ namespace CinemaDesktop
             //Views
             Container.Register<MainWindow>(Reuse.Singleton);
             Container.Register<MainViewModel>(Reuse.Singleton);
+            Container.Register<UserViewModel>(Reuse.Singleton, Made.Of(()=>new UserViewModel()));
 
             //ViewModels
 			
