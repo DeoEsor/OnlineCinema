@@ -21,6 +21,8 @@
                 <ResourceDictionary Source="Themes/ScrollTheme.xaml"/>
                 <ResourceDictionary Source="Themes/Colors.xaml"/>
                 <ResourceDictionary Source="Themes/PlayButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/ButtonBackTheme.xaml"/>
+
 
 
             </ResourceDictionary.MergedDictionaries>
@@ -35,6 +37,10 @@
             
             <DataTemplate DataType="{x:Type viewModel:ContentCardViewModel}">
                 <view:ContentCardView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:UserSettingsViewModel}">
+                <view:UserSettingsView/>
             </DataTemplate>
             
         </ResourceDictionary>
