@@ -179,7 +179,7 @@
                         VerticalAlignment="Bottom"
                         Margin="20"
                         Style="{StaticResource PlayButtonTheme}"
-                        >
+                        Command="{Binding OnClick}">
                 </Button>
             </Grid>
             

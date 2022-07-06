@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
 using CinemaDesktop.Core;
 using CinemaDesktop.MVVM.Commands;
 using DryIoc;
@@ -31,7 +31,7 @@ public class MainViewModel: ObservableObject
             OnPropertyChanged();
         }
     }
-
+    
     public MainViewModel()
     {
         ContentVM = new ContentViewModel();
@@ -49,8 +49,7 @@ public class MainViewModel: ObservableObject
         
         UserViewCommand = new RelayCommand(o =>
         {
-            CurrentView = UserVM;
-            VM.Push(CurrentView);
+            ShowNewView(UserVM);
         });
 
         BackViewCommand = new RelayCommand(o =>

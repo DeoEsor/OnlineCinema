@@ -1,4 +1,5 @@
-﻿using UserService.Messages;
+﻿using System;
+using UserService.Messages;
 
 namespace CinemaDesktop.MVVM.Model;
 
@@ -9,7 +10,7 @@ public class UserModel
     public string Country { get; set; }
     public string Nickname { get; set; }
     
-    public string DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
     
     public string ImageSource { get; set; }
     
