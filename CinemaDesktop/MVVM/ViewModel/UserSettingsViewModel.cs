@@ -1,4 +1,5 @@
-﻿using CinemaDesktop.MVVM.Model;
+﻿using System;
+using CinemaDesktop.MVVM.Model;
 
 namespace CinemaDesktop.MVVM.ViewModel;
 
@@ -17,7 +18,7 @@ public class UserSettingsViewModel
             Name = "Скарлетт",
             Surname = "Сорокина",
             Nickname = "Да я кошка",
-            DateOfBirth = "123",
+            DateOfBirth = DateTime.Today,
             Email = "kakoitoemail@gmail.com",
             Country = "Russia",
             Password = "4yf56y56u6j",

@@ -95,7 +95,7 @@
                                FontWeight="Bold"
                                FontSize="18"
                                Margin="5, 10"/>
-                    <TextBlock Text="{Binding Model.DateOfBirth}"
+                    <TextBlock Text="{Binding Model.DateOfBirth, StringFormat='dd.MM.yyyy'}"
                                Foreground="LightGray"
                                FontSize="16"
                                FontWeight="SemiBold"
