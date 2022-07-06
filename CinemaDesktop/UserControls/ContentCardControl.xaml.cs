@@ -3,7 +3,8 @@ using System.Windows.Input;
 using CinemaDesktop.MVVM.Commands;
 using CinemaDesktop.MVVM.Model;
 using CinemaDesktop.MVVM.ViewModel;
-using DryIoc;
+using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
+
 
 namespace CinemaDesktop.UserControls;
 
@@ -20,6 +21,10 @@ public partial class ContentCardControl : UserControl
                 "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQXKskA949YDC85-yvsGsHYgkXOh_og1Lt12vyGa5KthpCXnvti",
             Cast = "кеква9o86jhg653f42d tgy56cgh 7ythbv5thj677k7j676"
         };
+        OnClick = new RelayCommand(o =>
+        {
+            ShowNewView(new ContentCardViewModel(Model));
+        });
         InitializeComponent();
     }
 
@@ -28,9 +33,7 @@ public partial class ContentCardControl : UserControl
         Model = model;
         OnClick = new RelayCommand(o =>
         {
-            var mainViewModel = App.Container.Resolve<MainViewModel>();
-            mainViewModel.CurrentView = new ContentCardViewModel(model);
-            mainViewModel.VM.Push(mainViewModel.CurrentView);
+            ShowNewView(new ContentCardViewModel(Model));
         });
         
         InitializeComponent();

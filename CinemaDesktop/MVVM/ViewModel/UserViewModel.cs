@@ -1,7 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using CinemaDesktop.MVVM.Commands;
 using CinemaDesktop.MVVM.Model;
-using DryIoc;
+using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
 
 namespace CinemaDesktop.MVVM.ViewModel;
 
@@ -15,8 +16,7 @@ public class UserViewModel
         Model = model;
         OnClick = new RelayCommand(o =>
         {
-            var mainViewModel = App.Container.Resolve<MainViewModel>();
-            mainViewModel.CurrentView = new UserSettingsViewModel(model);
+            ShowNewView(new UserSettingsViewModel(Model));
         });
     }
     public UserViewModel()
@@ -26,7 +26,7 @@ public class UserViewModel
             Name = "Скарлетт",
             Surname = "Сорокина",
             Nickname = "Да я кошка",
-            DateOfBirth = "123",
+            DateOfBirth = DateTime.Today,
             Email = "kakoitoemail@gmail.com",
             Country = "Russia",
             ImageSource =
@@ -34,10 +34,7 @@ public class UserViewModel
         };
         OnClick = new RelayCommand(o =>
         {
-            var mainViewModel = App.Container.Resolve<MainViewModel>();
-            mainViewModel.CurrentView = new UserSettingsViewModel(Model);
-            mainViewModel.VM.Push(mainViewModel.CurrentView);
-
+            ShowNewView(new UserSettingsViewModel(Model));
         });
     }
 }
