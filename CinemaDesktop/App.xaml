@@ -22,9 +22,6 @@
                 <ResourceDictionary Source="Themes/Colors.xaml"/>
                 <ResourceDictionary Source="Themes/PlayButtonTheme.xaml"/>
                 <ResourceDictionary Source="Themes/ButtonBackTheme.xaml"/>
-
-
-
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:ContentViewModel}">
@@ -41,6 +38,10 @@
             
             <DataTemplate DataType="{x:Type viewModel:UserSettingsViewModel}">
                 <view:UserSettingsView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:VideoPlayerViewModel}">
+                <view:VideoPlayerView/>
             </DataTemplate>
             
         </ResourceDictionary>
