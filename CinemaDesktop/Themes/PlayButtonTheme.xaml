@@ -9,7 +9,8 @@
                     <Border
                         Background="#1C1C1C"
                         CornerRadius="5"
-                        BorderBrush="#252525">
+                        BorderBrush="#252525"
+                        Cursor="Hand">
                         <Image x:Name="image"
                                Source ="/Resources/Icons/PlayButtonWhite.png"/>
                     </Border>
