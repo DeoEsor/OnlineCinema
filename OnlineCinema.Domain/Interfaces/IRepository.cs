@@ -1,15 +1,10 @@
-﻿namespace OnlineCinema.Domain;
+﻿namespace OnlineCinema.Domain.Interfaces;
 
 public interface IRepository<T>
+where T : class
 {
-    
-    IEnumerable<T> Data { get; }
-    void AddData(T data);
-    void AddData(IEnumerable<T> data);
-    
-    Task AddDataAsync(T data, CancellationToken cancellationToken = default);
-    Task AddDataAsync(IEnumerable<T> data, CancellationToken cancellationToken = default);
-    
-    void ChangeData(int id, T data);
-    void ChangeData(int id, IEnumerable<T> data);
+    Task AddAsync(T item);
+    Task DeleteAsync(T item);
+    Task<IReadOnlyList<T>> GetListAsync();
+    Task<T> ChangeAsync(T item);
 }
