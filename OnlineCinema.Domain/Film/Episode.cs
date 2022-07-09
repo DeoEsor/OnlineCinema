@@ -32,7 +32,7 @@ public class Episode
 
     public List<Director> Directors { get; set; }
 
-    public List<Writer> Writers { get; set; }
+    public List<Writter> Writers { get; set; }
 
     public string? MagnetLink { get; set; }
 }
