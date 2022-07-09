@@ -1,6 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable IdentifierTypo
+// ReSharper disable ClassNeverInstantiated.Global
+#pragma warning disable CS8618
+
 namespace OnlineCinema.Domain;
 
 [Table("Film")]
@@ -15,6 +21,8 @@ public class Serial
     public string? PosterSource { get; set; }
 
     public List<Actor> Cast { get; set; }
+    
+    public Genre Genres { get; set; }
 
     public float IMDbRaiting { get; set; }
 
@@ -28,7 +36,7 @@ public class Serial
 
     public List<Director> Directors { get; set; }
 
-    public List<Writter> Writers { get; set; }
+    public List<Writer> Writers { get; set; }
 
     [Required] public string? MagnetLink { get; set; }
 }

@@ -3,15 +3,15 @@ using OnlineCinema.Domain.Core;
 
 namespace OnlineCinema.Domain;
 
-[Table("Writters")]
-public class Writter
+[Table("Writers")]
+public class Writer
 {
-    protected Writter(string country)
+    protected Writer(string country)
     {
         Country = country;
     }
 
-    public Writter(PersonalName personalName, DateTime dateOfBirth, string country)
+    public Writer(PersonalName personalName, DateTime dateOfBirth, string country)
     {
         Id = Guid.NewGuid();
         PersonalName = personalName ?? throw new ArgumentNullException(nameof(personalName));
