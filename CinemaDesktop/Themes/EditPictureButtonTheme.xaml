@@ -1,23 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="{x:Type Button}" x:Key="PlayButtonTheme">
+    <Style TargetType="{x:Type Button}" x:Key="EditPictureButtonTheme">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        Background="#1C1C1C"
-                        CornerRadius="5"
-                        BorderBrush="#252525"
-                        Cursor="Hand">
+                        Background="Transparent"
+                        CornerRadius="5">
                         <Image x:Name="image"
-                               Source ="/Resources/Icons/PlayButtonWhite.png"/>
+                               Source ="/Resources/Icons/EditPencilGray.png"/>
                     </Border>
                     
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" TargetName="image" Value="/Resources/Icons/PlayButtonYellow.png"/>
+                            <Setter Property="Source" TargetName="image" Value="/Resources/Icons/EditPencilYellow.png"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                     
