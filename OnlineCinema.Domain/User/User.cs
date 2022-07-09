@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using OnlineCinema.Domain.Core;
 
-namespace OnlineCinema.Domain.Person;
+namespace OnlineCinema.Domain.User;
 
 public class User : IDataErrorInfo
 {
