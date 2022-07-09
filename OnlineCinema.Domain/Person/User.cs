@@ -4,13 +4,13 @@ using OnlineCinema.Domain.Core;
 
 namespace OnlineCinema.Domain.Person;
 
-public class Person : IDataErrorInfo
+public class User : IDataErrorInfo
 {
-    protected Person()
+    protected User()
     {
     }
 
-    public Person(PersonalName personalName, DateTime dateOfBirth)
+    public User(PersonalName personalName, DateTime dateOfBirth)
     {
         Id = Guid.NewGuid();
         PersonalName = personalName ?? throw new ArgumentNullException(nameof(personalName));
