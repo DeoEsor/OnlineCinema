@@ -10,8 +10,4 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.5" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Film\Interfaces" />
-    </ItemGroup>
-
 </Project>
