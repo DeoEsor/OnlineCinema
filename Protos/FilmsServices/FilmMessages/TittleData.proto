@@ -51,7 +51,6 @@ message TitleData
     TvSeriesInfo TvSeriesInfo = 44;
     TvEpisodeInfo TvEpisodeInfo = 45;
     string ErrorMessage = 46;
-    string MagnetLink = 47;
 }
 
 message PosterDataItem
