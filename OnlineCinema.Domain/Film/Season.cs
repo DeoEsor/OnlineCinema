@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using OnlineCinema.Domain.Interfaces;
 
 namespace OnlineCinema.Domain;
 
 [Table("Seasons")]
-public class Season : IEqualityComparer<Season>, IComparable<Season>
+public class Season : IEqualityComparer<Season>, IComparable<Season>, IUpdatable<Season>
 {
     [Key] public int Id { get; set; }
     
@@ -18,7 +20,7 @@ public class Season : IEqualityComparer<Season>, IComparable<Season>
 
     public string? PosterSource { get; set; }
 
-    public List<Actor> Cast { get; set; }
+    public ICollection<Actor> Cast { get; set; }
 
     public float IMDbRaiting { get; set; }
 
@@ -28,11 +30,11 @@ public class Season : IEqualityComparer<Season>, IComparable<Season>
 
     public string Runtime { get; set; }
 
-    public List<Director> Directors { get; set; }
+    public ICollection<Director> Directors { get; set; }
 
-    public List<Writer> Writers { get; set; }
+    public ICollection<Writer> Writers { get; set; }
     
-    public List<Episode> Episodes { get; set; }
+    public ICollection<Episode> Episodes { get; set; }
 
     public string? MagnetLink { get; set; }
     
@@ -56,5 +58,23 @@ public class Season : IEqualityComparer<Season>, IComparable<Season>
             return SeasonNumber.CompareTo(other.SeasonNumber);
 
         return -1;
+    }
+
+    public Season Update(Season updated)
+    {
+        if (Id != updated.Id)
+            throw new ArgumentException(nameof(updated));
+        Description = updated.Description;
+        PosterSource = updated.PosterSource;
+        Cast = updated.Cast;
+        IMDbRaiting = updated.IMDbRaiting;
+        RottenTomatoesRaiting = updated.RottenTomatoesRaiting;
+        Runtime = updated.Runtime;
+        ReleaseData = updated.ReleaseData;
+        Directors = updated.Directors;
+        Writers = updated.Writers;
+        Episodes = updated.Episodes;
+        MagnetLink = updated.MagnetLink;
+        return this;
     }
 }
