@@ -2,10 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using OnlineCinema.Domain.Core;
+using OnlineCinema.Domain.Interfaces;
 
 namespace OnlineCinema.Domain.User;
 
-public class User : IDataErrorInfo
+public class User : IDataErrorInfo, IUpdatable<User>
 {
     protected User()
     {
@@ -56,5 +57,18 @@ public class User : IDataErrorInfo
             };
             return error;
         }
+    }
+
+    public User Update(User updated)
+    {
+        if (Id != updated.Id)
+            throw new ArgumentException(nameof(updated));
+        PersonalName = updated.PersonalName;
+        Country = updated.Country;
+        DateOfBirth = updated.DateOfBirth;
+        ImageSource = updated.ImageSource;
+        Email = updated.Email;
+        Password = updated.Password;
+        return this;
     }
 }
