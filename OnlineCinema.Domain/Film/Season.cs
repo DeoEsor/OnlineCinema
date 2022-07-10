@@ -31,6 +31,8 @@ public class Season : IEqualityComparer<Season>, IComparable<Season>
     public List<Director> Directors { get; set; }
 
     public List<Writer> Writers { get; set; }
+    
+    public List<Episode> Episodes { get; set; }
 
     public string? MagnetLink { get; set; }
     
