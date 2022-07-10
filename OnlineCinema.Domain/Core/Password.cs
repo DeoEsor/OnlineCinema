@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using OnlineCinema.Domain.Extensions;
@@ -17,15 +17,27 @@ public class Password : IDataErrorInfo
     {
     }
 
-    public Password(string value)
+    public Password([NotNull] string username, string value)
     {
+        if (string.IsNullOrEmpty(username))
+            throw new ArgumentNullException("Username is null", nameof(username));
         if (!IsValid(value))
             throw new ArgumentException("Name is not valid");
 
         Value = value;
+        Username = username;
+        Hashed = SaltedHash();
+    }
+    
+    public Password(byte[] hash)
+    {
+        Hashed = hash ?? throw new ArgumentNullException(nameof(hash), "hash is null");
     }
 
-    [NotMapped] public string Value { get; }
+    public string Value { get; }
+    
+    public byte[] Hashed { get; set; }
+    public string Username { get; }
 
     public string Error { get; }
 
@@ -47,9 +59,9 @@ public class Password : IDataErrorInfo
         }
     }
 
-    public byte[] HashValue(string username)
+    public byte[] SaltedHash()
     {
-        return Value.ToSaltedHash(username);
+        return Value.ToSaltedHash(Username);
     }
 
     public static bool IsValid(string value)
@@ -59,8 +71,7 @@ public class Password : IDataErrorInfo
 
     public override bool Equals(object? obj)
     {
-        return obj is Name other &&
-               StringComparer.Ordinal.Equals(Value, other.Value);
+        return obj is Password other && other.Hashed == Hashed;
     }
 
     public override int GetHashCode()

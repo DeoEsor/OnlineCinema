@@ -2,7 +2,7 @@
 
 namespace OnlineCinema.Domain.Core;
 
-public class Age : IDataErrorInfo
+public class Age : IDataErrorInfo, IComparable<int>, IComparable<Age>, IComparable
 {
     protected Age()
     {
@@ -54,5 +54,26 @@ public class Age : IDataErrorInfo
     public override int GetHashCode()
     {
         return Value.GetHashCode();
+    }
+
+    public int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        if (ReferenceEquals(this, obj)) return 0;
+        return obj is Age other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(Age)}");
+    }
+
+    public int CompareTo(Age? other)
+    {
+        if (ReferenceEquals(this, other)) return 0;
+        if (ReferenceEquals(null, other)) return 1;
+        var valueComparison = Value.CompareTo(other.Value);
+        return valueComparison;
+    }
+    
+    public int CompareTo(int other)
+    {
+        var valueComparison = Value.CompareTo(other);
+        return valueComparison;
     }
 }

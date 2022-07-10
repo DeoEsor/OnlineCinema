@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using OnlineCinema.Domain.Core;
 
@@ -21,12 +22,13 @@ public class User : IDataErrorInfo
     public Guid Id { get; }
 
     public PersonalName PersonalName { get; set; }
-
+    
     public Age Age => new(DateOfBirth);
 
+    [MaxLength(20)]
     public string Country { get; set; }
 
-    public Name Nickname { get; set; }
+    public Name Username { get; set; }
 
     public DateTime DateOfBirth { get; set; }
 
@@ -34,10 +36,13 @@ public class User : IDataErrorInfo
 
     public Email Email { get; set; }
 
-    [Column(TypeName = "BINARY(64)")] public Password Password { get; set; }
+    [Column(TypeName = "BINARY(64)")] 
+    public Password Password { get; set; }
 
+    [NotMapped]
     public string Error { get; }
 
+    [NotMapped]
     public string this[string columnName]
     {
         get
@@ -46,7 +51,7 @@ public class User : IDataErrorInfo
             {
                 "Age" => Age["Value"],
                 "PersonalName" => PersonalName["FullName"],
-
+                "Email" => Email["Value"],
                 _ => string.Empty
             };
             return error;

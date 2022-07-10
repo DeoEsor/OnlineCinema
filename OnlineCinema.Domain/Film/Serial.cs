@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineCinema.Domain;
 
-[Table("Film")]
+[Table("Serials")]
 public class Serial
 {
     [Key] public int Id { get; set; }
@@ -32,7 +32,7 @@ public class Serial
 
     public string AverageRuntime { get; set; }
     
-    public List<Episode> Episodes { get; set; }
+    public List<Season> Seasons { get; set; }
 
     public List<Director> Directors { get; set; }
 

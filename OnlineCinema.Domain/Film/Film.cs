@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineCinema.Domain;
 
-[Table("Film")]
+[Table("Films")]
 public class Film
 {
     [Key] public int Id { get; set; }
