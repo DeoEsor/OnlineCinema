@@ -3,54 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
         xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="600" 
-        Width="1000"
-        MinHeight="600"
-        MinWidth="1000"
+        Title="MainWindow"
+        Height="800"
+        Width="1400"
+        MinHeight="800"
+        MinWidth="1400"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="None"
         Background="#2D2F30">
-    
+
     <Window.DataContext>
         <viewModel:MainViewModel />
     </Window.DataContext>
-    
-    <Grid >
-        
+
+    <Grid>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="50" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
+
         <Border Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Background="{StaticResource GraphiteBlackBrush}"
                 MouseDown="Border_MouseDown">
-            
+
             <Grid HorizontalAlignment="Stretch">
-                
+
                 <Label Content="813Cinema"
                        Foreground="Gray"
                        FontWeight="ExtraBold"
                        FontSize="20"
-                       Margin="5, 0, 0, 0"/>
-                
+                       Margin="5, 0, 0, 0" />
+
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal"
                             Margin="5, 0">
-                    
+
                     <Button Width="20" Height="20"
                             Content="_"
                             Background="Transparent"
@@ -59,8 +58,8 @@
                             FontWeight="ExtraBold"
                             FontSize="14"
                             Style="{StaticResource ButtonNormBackground}"
-                            Click="Minimaze_Click"/>
-                    
+                            Click="Minimaze_Click" />
+
                     <Button Width="20" Height="20"
                             Content="&#11036;"
                             Background="Transparent"
@@ -69,8 +68,8 @@
                             Foreground="Gray"
                             FontSize="14"
                             Style="{StaticResource ButtonNormBackground}"
-                            Click="Maximaze_Click"/>
-                    
+                            Click="Maximaze_Click" />
+
                     <Button Width="20" Height="20"
                             Content="🞭"
                             Background="Transparent"
@@ -78,103 +77,120 @@
                             Foreground="Gray"
                             FontSize="14"
                             Style="{StaticResource ButtonNormBackground}"
-                            Click="Close_Click"/>
+                            Click="Close_Click" />
                 </StackPanel>
             </Grid>
         </Border>
-        
-        <Border Grid.Row="1" 
+
+        <Border Grid.Row="1"
                 Grid.Column="1"
                 BorderThickness="0, 0, 0,5"
                 BorderBrush="#28292A">
-            
-            <StackPanel HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                
-                <Label Content="Biba"
-                       Foreground="Gray"
-                       Margin="0, 10,0 ,0 "
-                       FontSize="12"/>
-                
-                <Button Width="45"
-                        Height="45"
-                        Margin="10,0,10,5"
-                        Background="Transparent"
-                        Style="{StaticResource ButtonNormBackground}"
-                        BorderThickness="0"
-                        Command="{Binding UserViewCommand}">
-                    
-                    <Ellipse Width="35" Height="35">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Resources/Icons/Amid.png" Stretch="UniformToFill"/>
-                        </Ellipse.Fill>
-                    </Ellipse>  
-                    
-                </Button> 
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Style="{StaticResource ButtonBackTheme}"
+                        Width="30"
+                        Height="30"
+                        Margin="10, 5, 10, 0"
+                        Cursor="Hand"
+                        Command="{Binding BackViewCommand}" />
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+
+                    <Label Content="{Binding Model.Nickname, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="LightGray"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center" />
+
+                    <Button Width="45"
+                            Height="45"
+                            Margin="10,0,10,5"
+                            Background="Transparent"
+                            Style="{StaticResource ButtonNormBackground}"
+                            BorderThickness="0"
+                            Command="{Binding UserViewCommand}">
+
+                        <Ellipse Width="35" Height="35"
+                                 Cursor="Hand">
+                            <Ellipse.Fill>
+                                <ImageBrush
+                                    ImageSource="{Binding Model.ImageSource, UpdateSourceTrigger=PropertyChanged}"
+                                    Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+
         </Border>
-        
+
         <Grid Grid.Row="1"
               Grid.Column="0"
               Grid.RowSpan="2"
               Background="#28292A">
-            
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
+                <RowDefinition Height="50" />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
-            
+
             <TextBox Grid.Column="0"
-                     Grid.Row="0" 
+                     Grid.Row="0"
                      Width="185"
                      Height="30"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
                      Margin="15, 10, 0,10"
-                     Style="{StaticResource SearchTextBoxTheme}"/> 
-            
+                     Style="{StaticResource SearchTextBoxTheme}" />
+
             <Button Grid.Column="1"
-                    Grid.Row = "0"
+                    Grid.Row="0"
                     Width="30"
                     Height="30"
                     Margin="0, 5,10,5"
                     Background="Transparent"
                     Style="{StaticResource SearchButtonTheme}"
-                    BorderThickness="0"/>
-            
+                    BorderThickness="0"
+                    Cursor="Hand" />
+
             <StackPanel Grid.Row="1"
-                        Grid.Column="0" 
+                        Grid.Column="0"
                         Grid.ColumnSpan="2">
-                
+
                 <RadioButton Content="Films"
                              Height="50"
                              FontSize="18"
                              Style="{StaticResource MenuButtonStyle}"
                              IsChecked="True"
-                             Command="{Binding ContentViewCommand}"/>
-                
+                             Command="{Binding ContentViewCommand}" />
+
                 <RadioButton Content="Serials"
                              Height="50"
                              FontSize="18"
-                             Style="{StaticResource MenuButtonStyle}"/>
-                
+                             Style="{StaticResource MenuButtonStyle}" />
+
                 <RadioButton Content="About the authors"
                              Height="30"
                              FontSize="12"
-                             Style="{StaticResource MenuButtonStyle}"/>
-                
-                </StackPanel>
+                             Style="{StaticResource MenuButtonStyle}" />
+
+            </StackPanel>
         </Grid>
-        
-        <ContentControl Grid.Column="1" 
+
+        <ContentControl Grid.Column="1"
                         Grid.Row="2"
-                        Content="{Binding CurrentView}">
-        </ContentControl>
-        
+                        Content="{Binding CurrentView}" />
+
     </Grid>
 </Window>

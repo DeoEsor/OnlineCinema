@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <Authors>DeoEsor, sornick01</Authors>
+        <Description>gRPC Client lib for online cinema desktop app</Description>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,8 +23,4 @@
         <Protobuf Include="../Protos/FilmsServices/**/*.proto" GrpcService="Both" ProtoRoot="../Protos/FilmsServices" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\OnlineCinema.BLL\OnlineCinema.BLL.csproj" />
-      <ProjectReference Include="..\OnlineCinema.DAL\OnlineCinema.DAL.csproj" />
-    </ItemGroup>
 </Project>

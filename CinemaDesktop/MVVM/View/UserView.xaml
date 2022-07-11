@@ -4,10 +4,109 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="520" 
+             d:DesignHeight="520"
              d:DesignWidth="750"
              Background="#2D2F30">
+
+    <!--<UserControl.DataContext>
+        <viewModel:UserViewModel/>
+    </UserControl.DataContext>-->
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                BorderThickness="0, 0, 0,5"
+                BorderBrush="#28292A">
+            <TextBlock Text="Account"
+                       Foreground="White"
+                       FontWeight="ExtraBold"
+                       FontSize="24"
+                       Margin="20, 10, 0,0" />
+        </Border>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                            Margin="40, 20">
+                    <Ellipse Height="300" Width="300">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Model.ImageSource}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <WrapPanel Margin="0, 20,0,5">
+                        <TextBlock Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="White"
+                                   FontWeight="ExtraBold"
+                                   TextWrapping="Wrap"
+                                   FontSize="22"
+                                   Margin="0, 0, 5, 0" />
+                        <TextBlock Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="White"
+                                   FontWeight="ExtraBold"
+                                   TextWrapping="Wrap"
+                                   FontSize="22" />
+                    </WrapPanel>
+                    <TextBlock Text="{Binding Model.Nickname, UpdateSourceTrigger=PropertyChanged}"
+                               Foreground="LightGray"
+                               FontSize="18"
+                               TextWrapping="Wrap"
+                               FontWeight="SemiBold" />
+                    <Button Background="#252525"
+                            BorderBrush="#252525"
+                            Foreground="White"
+                            FontSize="14"
+                            Content="Edit profile"
+                            Margin="0, 20"
+                            Command="{Binding OnClick}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                            Margin="0, 20, 20, 20">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Email:"
+                                   Foreground="Gray"
+                                   FontWeight="Bold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Date of birth:"
+                                   Foreground="Gray"
+                                   FontWeight="Bold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock
+                            Text="{Binding Model.DateOfBirth, StringFormat='dd.MM.yyyy', UpdateSourceTrigger=PropertyChanged}"
+                            Foreground="LightGray"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Margin="5, 10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Country:"
+                                   Foreground="Gray"
+                                   FontWeight="Bold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Text="{Binding Model.Country, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

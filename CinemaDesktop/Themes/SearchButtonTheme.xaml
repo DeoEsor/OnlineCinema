@@ -9,21 +9,17 @@
                     <Border
                         Background="Transparent"
                         CornerRadius="5"
-                        x:Name="border">
+                        BorderBrush="#28292A">
                         <Image x:Name="image"
-                            Source ="/Resources/Icons/SearchButtonGray.png"/>
+                               Source="/Resources/Icons/searchgray.png" />
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#252525"/>
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#2D2F30" />
-                            <Setter Property="Source" TargetName="image" Value="/Resources/Icons/SearchButtonWhite.png"/>
+                            <Setter Property="Source" TargetName="image" Value="/Resources/Icons/searchyellow.png" />
                         </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
