@@ -1,21 +1,15 @@
 ﻿using System.ComponentModel;
-using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
 
-namespace OnlineCinema.Domain.Core;
+namespace OnlineCinema.BLL.Core;
 
-[Owned]
-public class Name : IDataErrorInfo, IComparable<string>, IComparable<Name>, IComparable
+public class Email : IDataErrorInfo, IComparable<string>, IComparable<Email>, IComparable
 {
-    private static readonly Regex ValidationRegex = new(
-        @"^[\p{L}\p{M}\p{N}]{1,20}\z",
-        RegexOptions.Singleline | RegexOptions.Compiled);
-
-    protected Name()
+    protected Email()
     {
     }
 
-    public Name(string value)
+    public Email(string value)
     {
         if (!IsValid(value))
             throw new ArgumentException("Name is not valid");
@@ -37,7 +31,7 @@ public class Name : IDataErrorInfo, IComparable<string>, IComparable<Name>, ICom
             {
                 case "Value":
                     if (!IsValid(Value))
-                        error = "Name is not valid";
+                        error = "Email is not valid";
                     break;
             }
 
@@ -45,10 +39,20 @@ public class Name : IDataErrorInfo, IComparable<string>, IComparable<Name>, ICom
         }
     }
 
-    public static bool IsValid(string value)
+    public bool IsValid(string emailAddress)
     {
-        return !string.IsNullOrWhiteSpace(value) && ValidationRegex.IsMatch(value);
+        try
+        {
+            var m = new MailAddress(emailAddress);
+
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
     }
+
 
     public override bool Equals(object? obj)
     {
@@ -61,7 +65,7 @@ public class Name : IDataErrorInfo, IComparable<string>, IComparable<Name>, ICom
         return StringComparer.Ordinal.GetHashCode(Value);
     }
 
-    public int CompareTo(Name? other)
+    public int CompareTo(Email? other)
     {
         if (ReferenceEquals(this, other)) return 0;
         if (ReferenceEquals(null, other)) return 1;
@@ -79,26 +83,26 @@ public class Name : IDataErrorInfo, IComparable<string>, IComparable<Name>, ICom
     {
         if (ReferenceEquals(null, obj)) return 1;
         if (ReferenceEquals(this, obj)) return 0;
-        return obj is Name other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(Name)}");
+        return obj is Email other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(Email)}");
     }
 
-    public static bool operator <(Name? left, Name? right)
+    public static bool operator <(Email? left, Email? right)
     {
-        return Comparer<Name>.Default.Compare(left, right) < 0;
+        return Comparer<Email>.Default.Compare(left, right) < 0;
     }
 
-    public static bool operator >(Name? left, Name? right)
+    public static bool operator >(Email? left, Email? right)
     {
-        return Comparer<Name>.Default.Compare(left, right) > 0;
+        return Comparer<Email>.Default.Compare(left, right) > 0;
     }
 
-    public static bool operator <=(Name? left, Name? right)
+    public static bool operator <=(Email? left, Email? right)
     {
-        return Comparer<Name>.Default.Compare(left, right) <= 0;
+        return Comparer<Email>.Default.Compare(left, right) <= 0;
     }
 
-    public static bool operator >=(Name? left, Name? right)
+    public static bool operator >=(Email? left, Email? right)
     {
-        return Comparer<Name>.Default.Compare(left, right) >= 0;
+        return Comparer<Email>.Default.Compare(left, right) >= 0;
     }
 }

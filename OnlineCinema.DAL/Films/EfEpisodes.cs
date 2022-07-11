@@ -77,7 +77,8 @@ public class EfEpisodes : IEpisodes
 
         return _context.Seasons
             .First(s => s == season)
-            .Episodes;
+            .Episodes
+            .ToList();
     }
 
     public async Task<IReadOnlyList<Episode>> FindBySerial(Serial serial)
@@ -98,7 +99,7 @@ public class EfEpisodes : IEpisodes
         return _context.Seasons
             .First(s => s == season)
             .Episodes
-            .Find(s => s.EpisodeNumber == episodeNumber)
+            .FirstOrDefault(s => s.EpisodeNumber == episodeNumber)
             ?? throw new InvalidOperationException("No such episode in serial");
     }
 }
