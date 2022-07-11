@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="520"
              d:DesignWidth="750"
@@ -64,7 +65,9 @@
                             FontSize="14"
                             Content="Edit profile"
                             Margin="0, 20"
-                            Command="{Binding OnClick}" />
+                            Command="{Binding OnClick}">
+
+                    </Button>
                 </StackPanel>
                 <StackPanel Grid.Column="1"
                             Margin="0, 20, 20, 20">

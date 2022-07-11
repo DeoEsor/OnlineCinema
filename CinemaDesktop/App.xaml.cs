@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using CinemaDesktop.MVVM.Model;
 using CinemaDesktop.MVVM.ViewModel;
 using DryIoc;
