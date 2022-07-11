@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineCinema.Domain.Core;
 using OnlineCinema.Domain.User;
 
 namespace OnlineCinema.DAL.Users;
 
 internal class UserConfiguration : IEntityTypeConfiguration<User>
+// IDesignTimeDbContextFactory
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
@@ -15,7 +14,7 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id)
             .ValueGeneratedNever();
-        
+        /*
         builder.OwnsOne(b => b.PersonalName, 
             pn =>
             {
@@ -33,19 +32,10 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
                     );
             });
 
-        var ageConverter = new ValueConverter<Age, int>(
-            v => v.Value,
-            v => new Age(v));
-
-        builder
-            .Property(p => p.Age)
-            .HasConversion(ageConverter)
-            .HasColumnName("Age")
-            .HasColumnType("int")
-            .IsRequired();
 
         builder.Property(p => p.Country)
-            .HasMaxLength(20);
+            .HasMaxLength(20)
+            ;
         
         builder.OwnsOne(b => b.Username, 
             pn =>
@@ -74,5 +64,7 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("Password")
             .HasColumnType("binary(64)")
             .IsRequired();
+            */
     }
+    
 }
