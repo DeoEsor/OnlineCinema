@@ -2,6 +2,7 @@
 using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
 using CinemaDesktop.Core;
 using CinemaDesktop.MVVM.Commands;
+using CinemaDesktop.MVVM.Model;
 using DryIoc;
 
 namespace CinemaDesktop.MVVM.ViewModel;
@@ -31,12 +32,22 @@ public class MainViewModel: ObservableObject
             OnPropertyChanged();
         }
     }
+    private UserModel _model;
+
+    public UserModel Model { get => _model;
+        set
+        {
+            _model = value;
+            OnPropertyChanged();
+        } 
+    }
     
     public MainViewModel()
     {
         ContentVM = new ContentViewModel();
         
-        UserVM = App.Container.Resolve<UserViewModel>();
+        Model = App.Container.Resolve<UserModel>();
+        UserVM = new UserViewModel(Model);
         
         CurrentView = ContentVM;
         VM.Push(CurrentView);

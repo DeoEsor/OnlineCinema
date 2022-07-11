@@ -7,6 +7,7 @@
         <UseWPF>true</UseWPF>
         <Authors>DeoEsor, vecherochek, sornick01, LinearBasis</Authors>
         <Description>WPF films media player and lib</Description>
+        <ApplicationIcon>Resources\Icons\default_logo.ico</ApplicationIcon>
     </PropertyGroup>
 
 
@@ -83,6 +84,9 @@
       <Content Include="Resources\Icons\facebook.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <Content Include="Resources\Icons\film2.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
       <Content Include="Resources\Icons\icono2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
@@ -98,10 +102,10 @@
       <Content Include="Resources\Icons\Rotten_Tomatoes.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Content Include="Resources\Icons\SearchButtonGray.png">
+      <Content Include="Resources\Icons\searchgray.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Content Include="Resources\Icons\SearchButtonWhite.png">
+      <Content Include="Resources\Icons\searchyellow.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Resources\Icons\Star.png">

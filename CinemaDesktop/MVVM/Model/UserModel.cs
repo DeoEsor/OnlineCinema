@@ -5,14 +5,16 @@ namespace CinemaDesktop.MVVM.Model;
 
 public class UserModel : ObservableObject
 {
-    private string _name;
-    private string _surname;
-    private string _country;
-    private string _nickName;
-    private DateTime _dateOfBirth;
-    private string _email;
+    private string _name = "Скарлетт";
+    private string _surname = "Сорокина";
+    private string _country = "Russia";
+    private string _nickName = "Да я кошка";
+    private DateTime _dateOfBirth = DateTime.Today;
+    private string _email = "kakoitoemail@gmail.com";
     private string _password;
-    private string _imageSource;
+
+    private string _imageSource =
+        "https://sun9-24.userapi.com/impg/69p9XpWkujGND-ODbQAGq94aPcq2EYXn_uiRig/SjWdzeDD5Cg.jpg?size=1344x1792&quality=95&sign=ad9ccf8eb6f4d6eadde27f566aff10f6&type=album";
 
     public string Name
     {

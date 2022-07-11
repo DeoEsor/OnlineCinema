@@ -6,198 +6,213 @@
              xmlns:local="clr-namespace:CinemaDesktop.MVVM.View"
              xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="520" 
+             d:DesignHeight="520"
              d:DesignWidth="750"
              Background="#2D2F30">
-    
+
     <!--<UserControl.DataContext>
         <viewModel:ContentCardViewModel/>
     </UserControl.DataContext>-->
-    
+
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+                <RowDefinition />
             </Grid.RowDefinitions>
-        
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
-            
-            <Image Grid.Row="0" 
+
+            <Image Grid.Row="0"
                    Grid.Column="0"
-                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="2"
                    Source="{Binding Model.ImageSource}"
                    Margin="20"
-                   VerticalAlignment="Top"/>
-            
-            <StackPanel Grid.Row="0" 
-                        Grid.Column="1">
-                <TextBlock Text="{Binding Model.ContentName}"
-                           Foreground="White"
-                           FontSize="32"
-                           TextWrapping="Wrap"
-                           FontWeight="SemiBold"
-                           Margin="5, 10. 5, 5"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Data:"
-                               Foreground="Gray"
-                               FontWeight="ExtraBold"
-                               FontSize="18"
-                               Margin="5, 10"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Model.Data}"
-                               Foreground="LightGray"
-                               FontSize="16"
-                               FontWeight="SemiBold"
-                               Margin="5, 10"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Runtime:"
-                               Foreground="Gray"
-                               FontWeight="ExtraBold"
-                               FontSize="18"
-                               Margin="5, 10"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Model.Runtime}"
-                               Foreground="LightGray"
-                               FontSize="16"
-                               FontWeight="SemiBold"
-                               Margin="5, 10"/>
-                </StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Text="Writers:"
-                               Foreground="Gray"
-                               FontWeight="ExtraBold"
-                               FontSize="18"
-                               Margin="5, 10"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Model.Writers}"
-                               Foreground="LightGray"
-                               FontSize="16"
-                               TextWrapping="Wrap"
-                               FontWeight="SemiBold"
-                               Margin="5, 10"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Text="Directors:"
-                               Foreground="Gray"
-                               FontWeight="ExtraBold"
-                               FontSize="18"
-                               Margin="5, 10"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Model.Directors}"
-                               Foreground="LightGray"
-                               FontSize="16"
-                               TextWrapping="Wrap"
-                               FontWeight="SemiBold"
-                               Margin="5, 10"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Text="Cast:"
-                               Foreground="Gray"
-                               FontWeight="ExtraBold"
-                               FontSize="18"
-                               Margin="5, 10"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Model.Cast}"
-                               Foreground="LightGray"
-                               FontSize="16"
-                               TextWrapping="Wrap"
-                               FontWeight="SemiBold"
-                               Margin="5, 10"/>
-                </Grid>
-            </StackPanel>
-            <Grid Grid.Row="1" Grid.Column="1">
+                   VerticalAlignment="Top" />
+
+            <Grid Grid.Row="0" Grid.Column="2" Margin="0, 20">
+
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
-                <StackPanel Grid.Column="0"  Orientation="Horizontal"
-                             VerticalAlignment="Bottom"
-                             Margin="5, 15">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="{Binding Model.ImageSource}"
+                                Opacity="0.2"
+                                Stretch="UniformToFill"/>
+                </Grid.Background>
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Top">
+
+                    <TextBlock Text="{Binding Model.ContentName}"
+                               Foreground="White"
+                               FontSize="32"
+                               TextWrapping="Wrap"
+                               FontWeight="SemiBold"
+                               Margin="5, 0, 5, 5" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data:"
+                                   Foreground="Gray"
+                                   FontWeight="ExtraBold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Grid.Column="1" Text="{Binding Model.Data}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Runtime:"
+                                   Foreground="Gray"
+                                   FontWeight="ExtraBold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Grid.Column="1" Text="{Binding Model.Runtime}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Writers:"
+                                   Foreground="Gray"
+                                   FontWeight="ExtraBold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Grid.Column="1" Text="{Binding Model.Writers}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   TextWrapping="Wrap"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Directors:"
+                                   Foreground="Gray"
+                                   FontWeight="ExtraBold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Grid.Column="1" Text="{Binding Model.Directors}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   TextWrapping="Wrap"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Cast:"
+                                   Foreground="Gray"
+                                   FontWeight="ExtraBold"
+                                   FontSize="18"
+                                   Margin="5, 10" />
+                        <TextBlock Grid.Column="1" Text="{Binding Model.Cast}"
+                                   Foreground="LightGray"
+                                   FontSize="16"
+                                   TextWrapping="Wrap"
+                                   FontWeight="SemiBold"
+                                   Margin="5, 10" />
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            Margin="5, 15, 5, 5">
                     <StackPanel>
                         <TextBlock Text="IMDd RATING"
-                                           FontWeight="ExtraBold"
-                                           Foreground="Gray"
-                                           FontSize="16"
-                                           Margin="0, 5"/>
+                                   FontWeight="ExtraBold"
+                                   Foreground="Gray"
+                                   FontSize="16"
+                                   Margin="0, 5" />
                         <StackPanel Orientation="Horizontal">
-                            <Image Source ="/Resources/Icons/Star.png" Height="15"
-                                           Margin="0, 0, 5, 0"/>
+                            <Image Source="/Resources/Icons/Star.png" Height="15"
+                                   Margin="0, 0, 5, 0" />
                             <TextBlock Text="{Binding Model.IMDb}"
                                        FontSize="18"
                                        FontWeight="SemiBold"
-                                       Foreground="White"/>
+                                       Foreground="White" />
                             <TextBlock Text=" /10"
                                        FontSize="14"
                                        Foreground="Gray"
                                        FontWeight="SemiBold"
-                                       Margin="0, 4"/>
+                                       Margin="0, 4" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="25, 0">
                         <TextBlock Text="RottenTomatoes"
-                                           FontWeight="ExtraBold"
-                                           Foreground="Gray"
-                                           FontSize="16"
-                                           Margin="0, 5"/>
+                                   FontWeight="ExtraBold"
+                                   Foreground="Gray"
+                                   FontSize="16"
+                                   Margin="0, 5" />
+
                         <StackPanel Orientation="Horizontal">
-                            <Image Source ="/Resources/Icons/Rotten_Tomatoes.png" Height="15"
-                                           Margin="0, 0, 5, 0"/>
+
+                            <Image Source="/Resources/Icons/Rotten_Tomatoes.png" Height="15"
+                                   Margin="0, 0, 5, 0" />
+
                             <TextBlock Text="{Binding Model.RottenTomatoes}"
                                        FontSize="18"
                                        FontWeight="SemiBold"
-                                       Foreground="White"/>
+                                       Foreground="White" />
+
                             <TextBlock Text=" /100"
                                        FontSize="14"
                                        Foreground="Gray"
                                        FontWeight="SemiBold"
-                                       Margin="0, 4"/>
+                                       Margin="0, 4" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                
-                <Button Grid.Column="1" Width="150"
-                        Height="50"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Margin="20"
-                        Style="{StaticResource PlayButtonTheme}"
-                        Command="{Binding OnClick}">
-                </Button>
             </Grid>
-            
-            <Label Grid.Column="0" Grid.Row="2"
+
+            <Label Grid.Column="0" Grid.Row="1"
                    Content="Description"
                    Foreground="Gray"
                    FontSize="28"
                    Margin="15,0"
-                   FontWeight="SemiBold"/>
-            <TextBlock Grid.Column="0" 
-                       Grid.Row="3" 
-                       Grid.ColumnSpan="2"
+                   FontWeight="SemiBold" />
+            <Button Grid.Row="1" Grid.Column="1" 
+                    Margin="0, 0, 20, 0"
+                    Width="150"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Style="{StaticResource PlayButtonTheme}"
+                    Command="{Binding OnClick}" />
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="3"
                        Foreground="LightGray"
                        FontSize="18"
                        TextWrapping="Wrap"
                        Margin="20, 10"
-                       Text="{Binding Model.Description}"/>
+                       Text="{Binding Model.Description}" />
         </Grid>
     </ScrollViewer>
-    
 </UserControl>
