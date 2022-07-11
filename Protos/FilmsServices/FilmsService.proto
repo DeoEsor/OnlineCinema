@@ -7,42 +7,167 @@ package FilmsService;
 option csharp_namespace = "FilmsService";
 
 
-service FilmsService {
-  rpc GetTittleData (FilmGetRequest) returns (FilmGetResponse);
-  rpc AddTittleData (FilmPostRequest) returns (FilmPostResponse);
-  rpc UpdateTittleData (FilmPutRequest) returns (FilmPutResponse);
-}
-
-message FilmGetRequest
+service FilmsService 
 {
-    string id = 1;
+  rpc GetFilm (TittleGetByIDRequest) returns (FilmResponse);
+  rpc GetFilmByName (TittleGetByNameRequest) returns (FilmsResponse);
+  rpc AddFilm (FilmRequest) returns (FilmResponse);
+  rpc UpdateFilm (FilmRequest) returns (FilmResponse);
+}
+service SerialsService
+{
+  rpc GetSerial (TittleGetByIDRequest) returns (SerialResponse);
+  rpc GetSerialByName (TittleGetByNameRequest) returns (SerialsResponse);
+  rpc AddSerial (SerialRequest) returns (SerialResponse);
+  rpc UpdateSerial (SerialRequest) returns (SerialResponse);
+}
+service SeasonsService
+{
+  rpc GetSeason (TittleGetByIDRequest) returns (SeasonResponse);
+  rpc GetSeasonByName (TittleGetByNameRequest) returns (SeasonsResponse);
+  rpc AddSeason (SeasonRequest) returns (SeasonResponse);
+  rpc UpdateSeason (SeasonRequest) returns (SeasonResponse);
+}
+service EpisodesService
+{
+  rpc GetEpisode (TittleGetByIDRequest) returns (EpisodeResponse);
+  rpc GetEpisodeByName (TittleGetByNameRequest) returns (EpisodesResponse);
+  rpc AddEpisode (EpisodeRequest) returns (EpisodeResponse);
+  rpc UpdateEpisode (EpisodeRequest) returns (EpisodeResponse);
 }
 
-message FilmGetResponse
+message TittleGetByIDRequest
+{
+  int32 Id = 1;
+}
+
+message TittleGetByNameRequest
+{
+  string Name = 1;
+}
+
+message FilmRequest
+{
+  Film FilmData =  1;
+}
+
+message FilmResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  optional Film FilmData =  2;
 }
 
-message FilmPostRequest
-{
-    TitleData FilmData =  1;
-}
-
-message FilmPostResponse
+message FilmsResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  repeated Film FilmData =  2;
 }
 
-
-message FilmPutRequest
-{
-  TitleData FilmData =  1;
-}
-
-message FilmPutResponse
+message SerialResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  optional Serial Serial =  2;
+}
+
+message SerialsResponse
+{
+  int32 Status = 1;
+  repeated Serial Serials =  2;
+}
+message SeasonResponse
+{
+  int32 Status = 1;
+  optional Season Season =  2;
+}
+
+message SeasonsResponse
+{
+  int32 Status = 1;
+  repeated Season Seasons =  2;
+}
+message EpisodeResponse
+{
+  int32 Status = 1;
+  optional Episode Episode =  2;
+}
+
+message EpisodesResponse
+{
+  int32 Status = 1;
+  repeated Episode Episodes =  2;
+}
+
+message EpisodeRequest
+{
+  Episode Episode = 1;
+}
+message SerialRequest
+{
+  Serial Serial = 1;
+}
+message SeasonRequest
+{
+  Season Season = 1;
+}
+
+service WriterService
+{
+  rpc GetWriter (PersonGetByIDRequest) returns (WriterResponse);
+  rpc GetWriterByName (PersonGetByName) returns (WriterResponse);
+  rpc AddWriter (WriterRequest) returns (WriterResponse);
+  rpc UpdateWriter (WriterRequest) returns (WriterResponse);
+}
+
+service DirectorService
+{
+  rpc GetDirector (PersonGetByIDRequest) returns (DirectorResponse);
+  rpc GetDirectorByName (PersonGetByName) returns (DirectorResponse);
+  rpc AddDirector (DirectorRequest) returns (DirectorResponse);
+  rpc UpdateDirector (DirectorRequest) returns (DirectorResponse);
+}
+
+service ActorsService
+{
+  rpc GetActor (PersonGetByIDRequest) returns (ActorResponse);
+  rpc GetActorByName (PersonGetByName) returns (ActorResponse);
+  rpc AddActor (ActorRequest) returns (ActorResponse);
+  rpc UpdateActor (ActorRequest) returns (ActorResponse);
+}
+
+message PersonGetByIDRequest
+{
+  int32 Id =  1;
+}
+message PersonGetByName
+{
+  string name =  1;
+}
+message ActorRequest
+{
+  Actor Person =  1;
+}
+message ActorResponse
+{
+  int32 Status = 1;
+  repeated Actor Person =  2;
+}
+
+message WriterResponse
+{
+  int32 Status = 1;
+  repeated Writer Person =  2;
+}
+message WriterRequest
+{
+  Writer Person =  1;
+}
+
+message DirectorRequest
+{
+  Director Person =  1;
+}
+message DirectorResponse
+{
+  int32 Status = 1;
+  repeated Director Person =  2;
 }
