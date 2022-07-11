@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using OnlineCinema.Domain.Extensions;
 
-namespace OnlineCinema.Domain.Core;
+namespace OnlineCinema.BLL.Core;
 
 [Owned]
 public class Password : IDataErrorInfo
@@ -37,10 +37,11 @@ public class Password : IDataErrorInfo
     public string Value { get; }
     
     public byte[] Hashed { get; set; }
+    
     public string Username { get; }
-
+    
     public string Error { get; }
-
+    
     public string this[string columnName]
     {
         get

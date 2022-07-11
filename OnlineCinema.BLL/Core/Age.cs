@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace OnlineCinema.Domain.Core;
+namespace OnlineCinema.BLL.Core;
 
 public class Age : IDataErrorInfo, IComparable<int>, IComparable<Age>, IComparable
 {

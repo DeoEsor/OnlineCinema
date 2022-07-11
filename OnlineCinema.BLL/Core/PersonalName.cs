@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
-using Microsoft.EntityFrameworkCore;
 
-namespace OnlineCinema.Domain.Core;
+namespace OnlineCinema.BLL.Core;
 
-[Owned]
 public class PersonalName : IDataErrorInfo
 {
     protected PersonalName()
