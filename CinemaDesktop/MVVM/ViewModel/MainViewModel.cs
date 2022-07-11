@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
 using CinemaDesktop.Core;
 using CinemaDesktop.MVVM.Commands;
 using CinemaDesktop.MVVM.Model;
 using DryIoc;
+using static CinemaDesktop.Core.Extensions.ViewModelExtensions;
 
 namespace CinemaDesktop.MVVM.ViewModel;
 

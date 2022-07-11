@@ -1,7 +1,6 @@
 ﻿<Application
     x:Class="CinemaDesktop.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:local="clr-namespace:CinemaDesktop"
     xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
     xmlns:view="clr-namespace:CinemaDesktop.MVVM.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">

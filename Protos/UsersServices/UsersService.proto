@@ -12,4 +12,11 @@ option csharp_namespace = "UserService";
 service UserService {
   rpc Auth (AuthRequest) returns (UserReply);
   rpc Register (RegisterRequest) returns (UserReply);
+  rpc Update (UpdateRequest) returns (UserReply);
+}
+
+message UpdateRequest
+{
+  User user = 1;
+  bytes password = 2;
 }

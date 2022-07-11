@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using OnlineCinema.Domain.Interfaces;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
@@ -10,7 +11,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace OnlineCinema.Domain;
 
 [Table("Serials")]
-public class Serial
+public class Serial : IUpdatable<Serial>
 {
     [Key] public int Id { get; set; }
 
@@ -20,7 +21,7 @@ public class Serial
 
     public string? PosterSource { get; set; }
 
-    public List<Actor> Cast { get; set; }
+    public ICollection<Actor> Cast { get; set; } = new List<Actor>();
     
     public Genre Genres { get; set; }
 
@@ -28,15 +29,34 @@ public class Serial
 
     public float RottenTomatoesRaiting { get; set; }
 
+    [Column(TypeName = "datetime2")]
     public DateTime ReleaseData { get; set; }
 
     public string AverageRuntime { get; set; }
     
-    public List<Season> Seasons { get; set; }
+    public ICollection<Season> Seasons { get; set; } = new List<Season>();
 
-    public List<Director> Directors { get; set; }
+    public ICollection<Director> Directors { get; set; } = new List<Director>();
 
-    public List<Writer> Writers { get; set; }
+    public ICollection<Writer> Writers { get; set; } = new List<Writer>();
 
-    [Required] public string? MagnetLink { get; set; }
+    public string? MagnetLink { get; set; }
+    public Serial Update(Serial updated)
+    {
+        if (Id != updated.Id)
+            throw new ArgumentException(nameof(updated));
+        Description = updated.Description;
+        PosterSource = updated.PosterSource;
+        Cast = updated.Cast;
+        Genres = updated.Genres;
+        IMDbRaiting = updated.IMDbRaiting;
+        RottenTomatoesRaiting = updated.RottenTomatoesRaiting;
+        ReleaseData = updated.ReleaseData;
+        AverageRuntime = updated.AverageRuntime;
+        Seasons = updated.Seasons;
+        Directors = updated.Directors;
+        Writers = updated.Writers;
+        MagnetLink = updated.MagnetLink;
+        return this;
+    }
 }

@@ -38,8 +38,8 @@ public class EfActors : IActors
     public async Task<IReadOnlyList<Actor>> GetListAsync()
     {
         return await _context.Actors
-            .OrderBy(p => p.PersonalName.LastName.Value)
-            .ThenBy(p => p.PersonalName.FirstName.Value)
+            .OrderBy(p => p.PersonalName)
+            .ThenBy(p => p.PersonalName)
             .ToListAsync();
     }
 
@@ -50,8 +50,7 @@ public class EfActors : IActors
         var persona = _context.Actors.FirstOrDefault(item => item.Id == Actor.Id)
                       ?? throw new ArgumentException("No such Actor in db", nameof(Actor));
 
-        persona.DateOfBirth = Actor.DateOfBirth;
-        persona.PersonalName = Actor.PersonalName;
+        persona.Update(Actor);
         await _unit.Commit();
 
         return persona;
@@ -62,8 +61,8 @@ public class EfActors : IActors
         if (name == null) throw new ArgumentNullException(nameof(name));
 
         return await _context.Actors
-            .Where(p => p.PersonalName.FullName.LevenshteinDistance(name) < 10)
-            .OrderBy(p => p.PersonalName.FullName.LevenshteinDistance(name))
+            .Where(p => p.PersonalName.LevenshteinDistance(name) < 10)
+            .OrderBy(p => p.PersonalName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
             .ToListAsync();
     }

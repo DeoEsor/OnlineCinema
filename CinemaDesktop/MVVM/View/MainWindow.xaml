@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
         xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow"
@@ -98,9 +97,7 @@
                         Height="30"
                         Margin="10, 5, 10, 0"
                         Cursor="Hand"
-                        Command="{Binding BackViewCommand}">
-
-                </Button>
+                        Command="{Binding BackViewCommand}" />
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right"
                             Orientation="Horizontal">
 
@@ -193,8 +190,7 @@
 
         <ContentControl Grid.Column="1"
                         Grid.Row="2"
-                        Content="{Binding CurrentView}">
-        </ContentControl>
+                        Content="{Binding CurrentView}" />
 
     </Grid>
 </Window>

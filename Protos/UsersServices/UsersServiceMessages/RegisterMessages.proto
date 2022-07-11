@@ -7,7 +7,6 @@ option csharp_namespace = "UserService.Messages";
 package UserService;
 
 message RegisterRequest{
-  string Username = 1;
-  bytes Password = 2;
-  optional string status = 3;
+  string username = 1;
+  bytes password = 2;
 }
