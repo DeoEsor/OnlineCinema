@@ -38,8 +38,8 @@ public class EfDirectors : IDirectors
     public async Task<IReadOnlyList<Director>> GetListAsync()
     {
         return await _context.Directors
-            .OrderBy(p => p.PersonalName.LastName.Value)
-            .ThenBy(p => p.PersonalName.FirstName.Value)
+            .OrderBy(p => p.PersonalName)
+            .ThenBy(p => p.PersonalName)
             .ToListAsync();
     }
 
@@ -62,8 +62,8 @@ public class EfDirectors : IDirectors
         if (name == null) throw new ArgumentNullException(nameof(name));
 
         return await _context.Directors
-            .Where(p => p.PersonalName.FullName.LevenshteinDistance(name) < 10)
-            .OrderBy(p => p.PersonalName.FullName.LevenshteinDistance(name))
+            .Where(p => p.PersonalName.LevenshteinDistance(name) < 10)
+            .OrderBy(p => p.PersonalName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
             .ToListAsync();
     }
