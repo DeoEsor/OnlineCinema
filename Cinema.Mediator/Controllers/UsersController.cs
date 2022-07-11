@@ -9,9 +9,11 @@ namespace Cinema.Mediator.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly EfUsers _efUsers;
-    public UsersController(EfUsers context)
+    private readonly ILogger<UsersController> _logger;
+    public UsersController(EfUsers context, ILogger<UsersController> logger)
     {
         _efUsers = context;
+        _logger = logger;
     }
  
     [HttpGet]
@@ -34,7 +36,8 @@ public class UsersController : ControllerBase
         }
         catch (Exception e)
         {
-            //logger
+            
+            _logger.LogError($"{e.Message}");
             return NotFound();
         }
     }
@@ -58,8 +61,7 @@ public class UsersController : ControllerBase
         }
         catch (Exception e)
         {
-            
-            //logger
+            _logger.LogError($"{e.Message}");
             return Problem();
         }
     }
@@ -77,6 +79,8 @@ public class UsersController : ControllerBase
         }
         catch (Exception e)
         {
+            
+            _logger.LogError($"{e.Message}");
             return NotFound(user);
         }
     }
@@ -92,6 +96,8 @@ public class UsersController : ControllerBase
         }
         catch (Exception e)
         {
+            
+            _logger.LogError($"{e.Message}");
             return NotFound(id);
         }
     }
