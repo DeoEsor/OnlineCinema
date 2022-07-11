@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 using OnlineCinema.Domain.Interfaces;
 
 namespace OnlineCinema.Domain;
@@ -20,21 +19,22 @@ public class Season : IEqualityComparer<Season>, IComparable<Season>, IUpdatable
 
     public string? PosterSource { get; set; }
 
-    public ICollection<Actor> Cast { get; set; }
+    public ICollection<Actor> Cast { get; set; } = new List<Actor>();
 
     public float IMDbRaiting { get; set; }
 
     public float RottenTomatoesRaiting { get; set; }
 
+    [Column(TypeName = "datetime2")]
     public DateTime ReleaseData { get; set; }
 
     public string Runtime { get; set; }
 
-    public ICollection<Director> Directors { get; set; }
+    public ICollection<Director> Directors { get; set; } = new List<Director>();
 
-    public ICollection<Writer> Writers { get; set; }
-    
-    public ICollection<Episode> Episodes { get; set; }
+    public ICollection<Writer> Writers { get; set; } = new List<Writer>();
+
+    public ICollection<Episode> Episodes { get; set; } = new List<Episode>();
 
     public string? MagnetLink { get; set; }
     

@@ -38,8 +38,8 @@ public class EfWriters : IWriters
     public async Task<IReadOnlyList<Writer>> GetListAsync()
     {
         return await _context.Writers
-            .OrderBy(p => p.PersonalName.LastName.Value)
-            .ThenBy(p => p.PersonalName.FirstName.Value)
+            .OrderBy(p => p.PersonalName)
+            .ThenBy(p => p.PersonalName)
             .ToListAsync();
     }
 
@@ -62,8 +62,8 @@ public class EfWriters : IWriters
         if (name == null) throw new ArgumentNullException(nameof(name));
 
         return await _context.Writers
-            .Where(p => p.PersonalName.FullName.LevenshteinDistance(name) < 10)
-            .OrderBy(p => p.PersonalName.FullName.LevenshteinDistance(name))
+            .Where(p => p.PersonalName.LevenshteinDistance(name) < 10)
+            .OrderBy(p => p.PersonalName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
             .ToListAsync();
     }
