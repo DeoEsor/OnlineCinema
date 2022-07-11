@@ -1,55 +1,42 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using OnlineCinema.Domain.Core;
+using OnlineCinema.Domain.Interfaces;
 
 namespace OnlineCinema.Domain.User;
 
-public class User : IDataErrorInfo
+[Table("Users")]
+public class User :  IUpdatable<User>
 {
-    protected User()
-    {
-    }
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; }
 
-    public User(PersonalName personalName, DateTime dateOfBirth)
-    {
-        Id = Guid.NewGuid();
-        PersonalName = personalName ?? throw new ArgumentNullException(nameof(personalName));
-        DateOfBirth = dateOfBirth;
-        var age = Age; // throwing InvalidArgument if DateOfBirth is invalid 
-    }
+    public string PersonalName { get; set; }
 
-    public Guid Id { get; }
+    public string? Country { get; set; }
 
-    public PersonalName PersonalName { get; set; }
+    
+    public string Username { get; set; }
 
-    public Age Age => new(DateOfBirth);
-
-    public string Country { get; set; }
-
-    public Name Nickname { get; set; }
-
+    [Column(TypeName = "datetime2")]
     public DateTime DateOfBirth { get; set; }
 
-    public string ImageSource { get; set; }
+    public string? ImageSource { get; set; }
 
-    public Email Email { get; set; }
+    public string Email { get; set; }
 
-    [Column(TypeName = "BINARY(64)")] public Password Password { get; set; }
-
-    public string Error { get; }
-
-    public string this[string columnName]
+    [Column(TypeName = "BINARY(64)")] 
+    public byte[] Password { get; set; }
+    
+    public User Update(User updated)
     {
-        get
-        {
-            var error = columnName switch
-            {
-                "Age" => Age["Value"],
-                "PersonalName" => PersonalName["FullName"],
-
-                _ => string.Empty
-            };
-            return error;
-        }
+        if (Id != updated.Id)
+            throw new ArgumentException(nameof(updated));
+        PersonalName = updated.PersonalName;
+        Country = updated.Country;
+        DateOfBirth = updated.DateOfBirth;
+        ImageSource = updated.ImageSource;
+        Email = updated.Email;
+        Password = updated.Password;
+        return this;
     }
 }

@@ -1,13 +1,40 @@
-using Cinema.Mediator.Services;
-using Cinema.Users.Repository.Core;
+using App.Metrics.AspNetCore;
+using App.Metrics.Formatters.Prometheus;
+using Cinema.Mediator;
 
-var builder = WebApplication.CreateBuilder(args);
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
 
-// Add services to the container.
-builder.Services.AddSingleton<UsersRepository>();
-builder.Services.AddGrpc();
-var app = builder.Build();
-app.Urls.Add("https://localhost:7280");
-// Configure the HTTP request pipeline.
-app.MapGrpcService<UsersService>();
-app.Run();
+    private static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .UseMetricsWebTracking()
+            .UseMetrics(options =>
+            {
+                options.EndpointOptions = endpoints =>
+                {
+                    endpoints.MetricsTextEndpointOutputFormatter = new MetricsPrometheusTextOutputFormatter();
+                    endpoints.MetricsEndpointOutputFormatter = new MetricsPrometheusProtobufOutputFormatter();
+                    endpoints.EnvironmentInfoEndpointEnabled = false;
+                };
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Environment.CurrentDirectory)
+                    .AddJsonFile("appsettings.json", optional: false, true)
+                    .AddJsonFile("appsettings.Development.json", optional: true, true)
+                    .Build();
+
+                webBuilder
+                    .UseConfiguration(config)
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseKestrel()
+                    .UseUrls(config.GetSection("Url").Value)
+                    .UseIISIntegration()
+                    .UseStartup<Startup>();
+            });
+}
