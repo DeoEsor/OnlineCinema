@@ -1,17 +1,21 @@
 ﻿syntax = "proto3";
-
+import "google/protobuf/timestamp.proto";
 option csharp_namespace = "UserService.Messages";
 
 package UserService;
 
-message User {
+message User 
+{
   int32 id = 1;
   string username = 2;
-  bytes password = 3;
-  optional string status = 4;
+  string email = 3;
+  string fullname = 4;
+  string imagesource = 5;
+  string country = 6;
+  google.protobuf.Timestamp date_of_birth = 7;
 }
 
 message UserReply {
   int32 status_code = 1;
-  optional User User = 2; 
+  optional User user = 2; 
 }
