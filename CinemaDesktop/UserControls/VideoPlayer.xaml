@@ -3,96 +3,200 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wpf="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="800"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             Loaded="UserControl_Loaded">
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid x:Name="RootGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="../Resources/Icons/abstract-colorful_651523.jpg" Stretch="UniformToFill" />
         </Grid.Background>
 
+        <Border x:Name="Bordelista" CornerRadius="1" Height="486" Margin="950,22,0,0" VerticalAlignment="Top"
+                Background="#CC000000">
+            <ListBox x:Name="LbLista" BorderBrush="{x:Null}" Background="Transparent" AllowDrop="True"
+                     Foreground="#FF008BFF" MouseDoubleClick="lbLista_MouseDoubleClick_1" FontSize="10"
+                      />
+        </Border>
 
-        <wpf:VlcControl x:Name="Media"
-                        MouseLeftButtonDown="MediaControl_OnMouseLeftButtonDown"
-                        MouseMove="MediaControl_OnMouseMove" />
-
-        <UniformGrid Grid.Row="1" x:Name="BorderMediaControls">
+        <Grid x:Name="GridMedia" Margin="0,22,127,0">
+            <MediaElement x:Name="MediaControl" UnloadedBehavior="Manual"
+                          Volume="{Binding Value, ElementName=Slidervol}" AllowDrop="True" LoadedBehavior="Manual"
+                          MouseLeftButtonDown="mediacontrol_MouseLeftButtonDown" MediaOpened="mediacontrol_MediaOpened"
+                          MediaEnded="mediacontrol_MediaEnded" Stretch="Fill" MouseMove="MediaControl_MouseMove" />
+        </Grid>
+        <Border x:Name="BorderMediaControls" Margin="0,444,127,5" Background="#00000000">
             <Grid x:Name="GridControl">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="20"/>
-                </Grid.ColumnDefinitions>
-                <Slider Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57"
+                <Slider x:Name="Slidervol" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57"
                         Margin="831,33,0,-3" Height="30" Maximum="1" TickFrequency="0.1" Value="0.5"
-                        IsMoveToPointEnabled="True"
-                        Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"
-                        ValueChanged="PlayerSlider_OnValueChanged" />
+                        IsMoveToPointEnabled="True" Style="{DynamicResource Estilo}" />
 
-                <Label Grid.Column="0" Grid.Row="1" x:Name="LbTime"
-                       Content="0:00:00"
-                       Foreground="White"
-                       FontSize="10" />
+                <Label x:Name="Lbrepeat" Content="Repetir" HorizontalAlignment="Left" Margin="376,18,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtRepeat}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="Lbstop" Content="Detener" HorizontalAlignment="Left" Margin="414,17,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtStop}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
 
-                <StackPanel Grid.Row="1" Grid.Column="1" 
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                             MaxHeight="20"
-                >
-                    <Button Width="20"
-                            Command="{Binding PauseCommand}"
-                            Margin="0,0,25,0">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../Resources/Icons/btn_pause_P.png" />
-                        </Button.Background>
-                    </Button>
-                    <Button Width="20"
-                            Command="{Binding PlayCommand}">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../Resources/Icons/btn_play_P.png" />
-                        </Button.Background>
-                    </Button>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="2" 
-                            Orientation="Horizontal"
-                            
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center">
-                        <Button Width="20"
-                                Command="{Binding MuteCommand}">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../Resources/Icons/btn_volume_P.png" />
-                        </Button.Background>
-                        <Slider
-                                Width="50" 
-                                IsMoveToPointEnabled="True"
-                                ValueChanged="Slider_OnValueChanged" 
-                                Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"/>
-                    </Button>    
-                </StackPanel>
-                
-                <Button Grid.Column="3" Grid.Row="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Width="17"
-                        Command="{Binding FullscreenCommand}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="../Resources/Icons/dimensions(2).png" />
-                    </Button.Background>
-                </Button>
+                <Label x:Name="Lbback" Content="Anterior" HorizontalAlignment="Left" Margin="449,17,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtBack}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="LbPausa" Content="Pausa" HorizontalAlignment="Left" Margin="474,17,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtPausa}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Label x:Name="LbPlay" Content="Reproducir" HorizontalAlignment="Left" Margin="467,17,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtPlay}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Label x:Name="LbNext" Content="Siguiente" HorizontalAlignment="Left" Margin="499,17,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtNext}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="LbVol" Content="Silenciar" HorizontalAlignment="Left" Margin="801,23,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtVol}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="Lbdesacrep" Content="No Repetir" HorizontalAlignment="Left" Margin="376,18,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtRepeatActivo}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="LbSCreen" Content="FullScreen" HorizontalAlignment="Left" Margin="898,24,0,0"
+                       VerticalAlignment="Top" Foreground="White" FontSize="8" Width="52">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BtScreen}"
+                                             Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+
+                <Image x:Name="BtRepeat" HorizontalAlignment="Left" Height="20" Margin="379,36,0,0"
+                       VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="imarepeat_MouseLeftButtonDown" Source="Resources/btn_Repeat_p.png"
+                       RenderTransformOrigin="0.667,0.167" />
+                <Image x:Name="BtStop" HorizontalAlignment="Left" Height="20" Margin="417,36,0,0"
+                       VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="btStop_MouseLeftButtonDown" Source="../Resources/Icons/btn_stop_P.png" />
+                <Image x:Name="BtBack" HorizontalAlignment="Left" Height="20" Margin="454,36,0,0"
+                       VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="btBack_MouseLeftButtonDown" Source="../Resources/Icons/btn_previous_P.png" />
+                <Image x:Name="BtPausa" HorizontalAlignment="Left" Height="20" Margin="479,36,0,0"
+                       VerticalAlignment="Top" Width="20" MouseLeftButtonDown="btPausa_MouseLeftButtonDown"
+                       Source="../Resources/Icons/btn_pause_P.png" StretchDirection="DownOnly" />
+                <Image x:Name="BtPlay" HorizontalAlignment="Left" Height="20" Margin="479,36,0,0"
+                       VerticalAlignment="Top" Width="20" MouseLeftButtonDown="btPlay_MouseLeftButtonDown"
+                       Source="../Resources/Icons/btn_play_P.png" StretchDirection="DownOnly" />
+                <Image x:Name="BtNext" HorizontalAlignment="Left" Height="20" Margin="504,36,0,0"
+                       VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="btNext_MouseLeftButtonDown" Source="../Resources/Icons/btn_next_P.png" />
+                <Image x:Name="BtVol" HorizontalAlignment="Left" Height="20" Margin="808,35,0,0"
+                       VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="btVol_MouseLeftButtonDown" Source="../Resources/Icons/btn_volume_P.png" />
+                <Image x:Name="BtRepeatActivo" Visibility="Collapsed" HorizontalAlignment="Left" Height="20"
+                       Margin="379,36,0,0" VerticalAlignment="Top" Width="20" Stretch="UniformToFill"
+                       MouseLeftButtonDown="imarepeat_MouseLeftButtonDown" Source="../Resources/Icons/Btn_RepeatC_p.png"
+                       RenderTransformOrigin="0.667,0.167" />
+                <Image x:Name="BtScreen" HorizontalAlignment="Left" Height="13" Margin="917,43,0,0"
+                       VerticalAlignment="Top" Width="17" MouseLeftButtonDown="btScreen_MouseLeftButtonDown"
+                       Source="../Resources/Icons/dimensions(2).png" />
+                <Slider x:Name="Slider" HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top"
+                        Width="841" IsMoveToPointEnabled="True"
+                        MouseLeftButtonUp="slideravance_MouseLeftButtonUp" />
+                <Label x:Name="Lbtime" Margin="893,8,24,31" Foreground="White" FontSize="10" />
             </Grid>
-        </UniformGrid>
+        </Border>
+        <TextBlock HorizontalAlignment="Left" Margin="940,-25,0,0" TextWrapping="Wrap" Text="TextBlock"
+                   VerticalAlignment="Top" />
     </Grid>
 </UserControl>

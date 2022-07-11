@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CinemaDesktop.MVVM.View"
-             xmlns:viewModel="clr-namespace:CinemaDesktop.MVVM.ViewModel"
-             xmlns:userControls="clr-namespace:CinemaDesktop.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="520" 
              d:DesignWidth="750"
@@ -29,19 +26,11 @@
                        Margin="20, 10, 0,0"/>
         </Border>
         
-        <ContentControl Grid.Row="1">
-            <userControls:VideoPlayer Stream="{Binding Stream}" />
-        </ContentControl>
-        
+        <ContentControl Grid.Row="1" />
+
         <ScrollViewer Grid.Row="2">
             <WrapPanel Orientation="Horizontal"
                        Margin="15,15, 0,0">
-                <Button Content="Click me"
-                        Command="{Binding PlayCommand}"/>
-                <ProgressBar
-                    Margin="10,0,20,0"
-                    Value="{Binding Progress}" Width="100"/>
-                <TextBlock Text="{Binding Name}" Width="100"/>
                 <TextBlock Text="Description: "
                            Foreground="Gray"
                            FontSize="20"
