@@ -21,7 +21,7 @@ public class Serial : IUpdatable<Serial>
 
     public string? PosterSource { get; set; }
 
-    public ICollection<Actor> Cast { get; set; }
+    public ICollection<Actor> Cast { get; set; } = new List<Actor>();
     
     public Genre Genres { get; set; }
 
@@ -29,15 +29,16 @@ public class Serial : IUpdatable<Serial>
 
     public float RottenTomatoesRaiting { get; set; }
 
+    [Column(TypeName = "datetime2")]
     public DateTime ReleaseData { get; set; }
 
     public string AverageRuntime { get; set; }
     
-    public ICollection<Season> Seasons { get; set; }
+    public ICollection<Season> Seasons { get; set; } = new List<Season>();
 
-    public ICollection<Director> Directors { get; set; }
+    public ICollection<Director> Directors { get; set; } = new List<Director>();
 
-    public ICollection<Writer> Writers { get; set; }
+    public ICollection<Writer> Writers { get; set; } = new List<Writer>();
 
     public string? MagnetLink { get; set; }
     public Serial Update(Serial updated)

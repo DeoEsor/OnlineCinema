@@ -21,21 +21,22 @@ public class Film : IUpdatable<Film>
 
     public string? PosterSource { get; set; }
 
-    public ICollection<Actor> Cast { get; set; }
+    public ICollection<Actor> Cast { get; set; } = new List<Actor>();
     
     public Genre Genres { get; set; }
 
     public float IMDbRaiting { get; set; }
 
     public float RottenTomatoesRaiting { get; set; }
-
+    
+    [Column(TypeName = "datetime2")]
     public DateTime ReleaseData { get; set; }
 
     public string Runtime { get; set; }
 
-    public ICollection<Director> Directors { get; set; }
+    public ICollection<Director> Directors { get; set; } = new List<Director>();
 
-    public ICollection<Writer> Writers { get; set; }
+    public ICollection<Writer> Writers { get; set; } = new List<Writer>();
 
     public string? MagnetLink { get; set; }
     public Film Update(Film updated)
