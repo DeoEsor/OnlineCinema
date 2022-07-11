@@ -8,9 +8,23 @@ option csharp_namespace = "FilmsService";
 
 
 service FilmsService {
-  rpc GetTittleData (FilmGetRequest) returns (FilmGetResponse);
-  rpc AddTittleData (FilmPostRequest) returns (FilmPostResponse);
-  rpc UpdateTittleData (FilmPutRequest) returns (FilmPutResponse);
+  rpc GetFilm (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddFilm (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateFilm (FilmPutRequest) returns (FilmPutResponse);
+  rpc GetSerial (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddSerial (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateSerial (FilmPutRequest) returns (FilmPutResponse);
+  rpc GetSeason (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddSeason (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateSeason (FilmPutRequest) returns (FilmPutResponse);
+  rpc AddActor (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateActor (FilmPutRequest) returns (FilmPutResponse);
+  rpc GetWriter (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddWriter (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateWriter (FilmPutRequest) returns (FilmPutResponse);
+  rpc GetDirector (FilmGetRequest) returns (FilmGetResponse);
+  rpc AddDirector (FilmPostRequest) returns (FilmPostResponse);
+  rpc UpdateDirector (FilmPutRequest) returns (FilmPutResponse);
 }
 
 message FilmGetRequest
@@ -21,28 +35,28 @@ message FilmGetRequest
 message FilmGetResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  optional Film FilmData =  2;
 }
 
 message FilmPostRequest
 {
-    TitleData FilmData =  1;
+  Film FilmData =  1;
 }
 
 message FilmPostResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  optional Film FilmData =  2;
 }
 
 
 message FilmPutRequest
 {
-  TitleData FilmData =  1;
+  Film FilmData =  1;
 }
 
 message FilmPutResponse
 {
   int32 Status = 1;
-  optional TitleData FilmData =  2;
+  optional Film FilmData =  2;
 }
