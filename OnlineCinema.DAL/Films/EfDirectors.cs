@@ -8,14 +8,14 @@ namespace OnlineCinema.DAL;
 
 public class EfDirectors : IDirectors
 {
-    private readonly FilmsContext _context;
+    public readonly FilmsContext Context;
     private readonly UnitOfWork<FilmsContext> _unit;
 
     public EfDirectors(UnitOfWork<FilmsContext> filmsUnitOfWork)
     {
         if (filmsUnitOfWork == null) throw new ArgumentNullException(nameof(filmsUnitOfWork));
 
-        _context = filmsUnitOfWork.Context;
+        Context = filmsUnitOfWork.Context;
         _unit = filmsUnitOfWork;
     }
     
@@ -23,7 +23,7 @@ public class EfDirectors : IDirectors
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        await _context.Directors.AddAsync(item);
+        await Context.Directors.AddAsync(item);
         await _unit.Commit();
     }
 
@@ -31,13 +31,13 @@ public class EfDirectors : IDirectors
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        _context.Directors.Remove(item);
+        Context.Directors.Remove(item);
         await _unit.Commit();
     }
 
     public async Task<IReadOnlyList<Director>> GetListAsync()
     {
-        return await _context.Directors
+        return await Context.Directors
             .OrderBy(p => p.PersonalName)
             .ThenBy(p => p.PersonalName)
             .ToListAsync();
@@ -47,7 +47,7 @@ public class EfDirectors : IDirectors
     {
         if (Director == null) throw new ArgumentNullException(nameof(Director));
 
-        var persona = _context.Directors.FirstOrDefault(item => item.Id == Director.Id)
+        var persona = Context.Directors.FirstOrDefault(item => item.Id == Director.Id)
                       ?? throw new ArgumentException("No such Director in db", nameof(Director));
 
         persona.Country = Director.Country;
@@ -61,7 +61,7 @@ public class EfDirectors : IDirectors
     {
         if (name == null) throw new ArgumentNullException(nameof(name));
 
-        return await _context.Directors
+        return await Context.Directors
             .Where(p => p.PersonalName.LevenshteinDistance(name) < 10)
             .OrderBy(p => p.PersonalName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect

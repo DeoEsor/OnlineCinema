@@ -8,14 +8,14 @@ namespace OnlineCinema.DAL;
 
 public class EfEpisodes : IEpisodes
 {
-    private readonly FilmsContext _context;
+    public readonly FilmsContext Context;
     private readonly UnitOfWork<FilmsContext> _unit;
 
     public EfEpisodes(UnitOfWork<FilmsContext> filmsUnitOfWork)
     {
         if (filmsUnitOfWork == null) throw new ArgumentNullException(nameof(filmsUnitOfWork));
 
-        _context = filmsUnitOfWork.Context;
+        Context = filmsUnitOfWork.Context;
         _unit = filmsUnitOfWork;
     }
     
@@ -23,7 +23,7 @@ public class EfEpisodes : IEpisodes
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        await _context.Episodes.AddAsync(item);
+        await Context.Episodes.AddAsync(item);
         await _unit.Commit();
     }
 
@@ -31,13 +31,13 @@ public class EfEpisodes : IEpisodes
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        _context.Episodes.Remove(item);
+        Context.Episodes.Remove(item);
         await _unit.Commit();
     }
 
     public async Task<IReadOnlyList<Episode>> GetListAsync()
     {
-        return await _context.Episodes
+        return await Context.Episodes
             .OrderBy(p => p.EpisodeName)
             .ToListAsync();
     }
@@ -46,7 +46,7 @@ public class EfEpisodes : IEpisodes
     {
         if (Episode == null) throw new ArgumentNullException(nameof(Episode));
 
-        var item = _context.Episodes.FirstOrDefault(item => item.Id == Episode.Id)
+        var item = Context.Episodes.FirstOrDefault(item => item.Id == Episode.Id)
                    ?? throw new ArgumentException("No such Episode in db", nameof(Episode));
 
         item.Cast = Episode.Cast;
@@ -64,7 +64,7 @@ public class EfEpisodes : IEpisodes
     {
         if (name == null) throw new ArgumentNullException(nameof(name));
 
-        return await _context.Episodes
+        return await Context.Episodes
             .Where(p => p.SerialName.LevenshteinDistance(name) < 10)
             .OrderBy(p => p.SerialName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
@@ -75,7 +75,7 @@ public class EfEpisodes : IEpisodes
     {
         if (season == null) throw new ArgumentNullException(nameof(season));
 
-        return _context.Seasons
+        return Context.Seasons
             .First(s => s == season)
             .Episodes
             .ToList();
@@ -85,7 +85,7 @@ public class EfEpisodes : IEpisodes
     {
         if (serial == null) throw new ArgumentNullException(nameof(serial));
 
-        return _context.Serials
+        return Context.Serials
             .First(s => s == serial)
             .Seasons
             .SelectMany(s => s.Episodes)
@@ -96,7 +96,7 @@ public class EfEpisodes : IEpisodes
     {
         if (season == null) throw new ArgumentNullException(nameof(season));
 
-        return _context.Seasons
+        return Context.Seasons
             .First(s => s == season)
             .Episodes
             .FirstOrDefault(s => s.EpisodeNumber == episodeNumber)

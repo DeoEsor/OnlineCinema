@@ -8,14 +8,14 @@ namespace OnlineCinema.DAL;
 
 public class EfSeasons : ISeasons
 {
-    private readonly FilmsContext _context;
+    public readonly FilmsContext Context;
     private readonly UnitOfWork<FilmsContext> _unit;
 
     public EfSeasons(UnitOfWork<FilmsContext> filmsUnitOfWork)
     {
         if (filmsUnitOfWork == null) throw new ArgumentNullException(nameof(filmsUnitOfWork));
 
-        _context = filmsUnitOfWork.Context;
+        Context = filmsUnitOfWork.Context;
         _unit = filmsUnitOfWork;
     }
     
@@ -23,7 +23,7 @@ public class EfSeasons : ISeasons
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        await _context.Seasons.AddAsync(item);
+        await Context.Seasons.AddAsync(item);
         await _unit.Commit();
     }
 
@@ -31,13 +31,13 @@ public class EfSeasons : ISeasons
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        _context.Seasons.Remove(item);
+        Context.Seasons.Remove(item);
         await _unit.Commit();
     }
 
     public async Task<IReadOnlyList<Season>> GetListAsync()
     {
-        return await _context.Seasons
+        return await Context.Seasons
             .OrderBy(p => p.SerialName)
             .ToListAsync();
     }
@@ -46,7 +46,7 @@ public class EfSeasons : ISeasons
     {
         if (Season == null) throw new ArgumentNullException(nameof(Season));
 
-        var item = _context.Seasons.FirstOrDefault(item => item.Id == Season.Id)
+        var item = Context.Seasons.FirstOrDefault(item => item.Id == Season.Id)
                       ?? throw new ArgumentException("No such Season in db", nameof(Season));
 
         item.Cast = Season.Cast;
@@ -64,7 +64,7 @@ public class EfSeasons : ISeasons
     {
         if (name == null) throw new ArgumentNullException(nameof(name));
 
-        return await _context.Seasons
+        return await Context.Seasons
             .Where(p => p.SerialName.LevenshteinDistance(name) < 10)
             .OrderBy(p => p.SerialName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
@@ -75,7 +75,7 @@ public class EfSeasons : ISeasons
     {
         if (serial == null) throw new ArgumentNullException(nameof(serial));
 
-        return await _context.Seasons
+        return await Context.Seasons
             .Where(p => p.SerialName == serial.SerialName)
             .ToListAsync();
     }
@@ -84,7 +84,7 @@ public class EfSeasons : ISeasons
     {
         if (serial == null) throw new ArgumentNullException(nameof(serial));
 
-        return _context.Seasons
+        return Context.Seasons
             .Where(p => p.SerialName == serial.SerialName)
             .FirstOrDefault(p => p.SeasonNumber == seasonNumber)
             ?? throw new ArgumentException("Such season is not founded", nameof(seasonNumber));

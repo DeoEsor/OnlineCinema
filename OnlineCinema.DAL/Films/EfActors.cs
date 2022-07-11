@@ -8,14 +8,14 @@ namespace OnlineCinema.DAL;
 
 public class EfActors : IActors
 {
-    private readonly FilmsContext _context;
+    public readonly FilmsContext Context;
     private readonly UnitOfWork<FilmsContext> _unit;
 
     public EfActors(UnitOfWork<FilmsContext> filmsUnitOfWork)
     {
         if (filmsUnitOfWork == null) throw new ArgumentNullException(nameof(filmsUnitOfWork));
 
-        _context = filmsUnitOfWork.Context;
+        Context = filmsUnitOfWork.Context;
         _unit = filmsUnitOfWork;
     }
 
@@ -23,7 +23,7 @@ public class EfActors : IActors
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        await _context.Actors.AddAsync(item);
+        await Context.Actors.AddAsync(item);
         await _unit.Commit();
     }
 
@@ -31,13 +31,13 @@ public class EfActors : IActors
     {
         if (item == null) throw new ArgumentNullException(nameof(item));
 
-        _context.Actors.Remove(item);
+        Context.Actors.Remove(item);
         await _unit.Commit();
     }
 
     public async Task<IReadOnlyList<Actor>> GetListAsync()
     {
-        return await _context.Actors
+        return await Context.Actors
             .OrderBy(p => p.PersonalName)
             .ThenBy(p => p.PersonalName)
             .ToListAsync();
@@ -47,7 +47,7 @@ public class EfActors : IActors
     {
         if (Actor == null) throw new ArgumentNullException(nameof(Actor));
 
-        var persona = _context.Actors.FirstOrDefault(item => item.Id == Actor.Id)
+        var persona = Context.Actors.FirstOrDefault(item => item.Id == Actor.Id)
                       ?? throw new ArgumentException("No such Actor in db", nameof(Actor));
 
         persona.Update(Actor);
@@ -60,7 +60,7 @@ public class EfActors : IActors
     {
         if (name == null) throw new ArgumentNullException(nameof(name));
 
-        return await _context.Actors
+        return await Context.Actors
             .Where(p => p.PersonalName.LevenshteinDistance(name) < 10)
             .OrderBy(p => p.PersonalName.LevenshteinDistance(name))
             .Take(limit) // Bug mb incorrect
